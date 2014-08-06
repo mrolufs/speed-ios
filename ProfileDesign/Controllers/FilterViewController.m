@@ -38,6 +38,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)goBackAction:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 /*
 #pragma mark - Navigation
 

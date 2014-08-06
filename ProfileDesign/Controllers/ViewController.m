@@ -12,12 +12,24 @@
 @interface ViewController () <UITextFieldDelegate, UIPickerViewDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UITextField *activeField;
+@property (strong, nonatomic) IBOutlet UILabel *frameStackLabel;
+@property (strong, nonatomic) IBOutlet UILabel *frameReachLabel;
+@property (strong, nonatomic) IBOutlet UILabel *armRestStackLabel;
+@property (strong, nonatomic) IBOutlet UILabel *armRestReachLabel;
+@property (strong, nonatomic) IBOutlet UILabel *stemAngleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *stemLengthLabel;
+@property (strong, nonatomic) IBOutlet UILabel *spacersLabel;
+@property (strong, nonatomic) IBOutlet UILabel *headsetCapLabel;
 @property (strong, nonatomic) IBOutlet UITextField *frameStack;
 @property (strong, nonatomic) IBOutlet UITextField *frameReach;
 @property (strong, nonatomic) IBOutlet UITextField *armRestStack;
 @property (strong, nonatomic) IBOutlet UITextField *armRestReach;
 @property (strong, nonatomic) IBOutlet UITextField *stemAngle;
+@property (strong, nonatomic) IBOutlet UITextField *stemLength;
+@property (strong, nonatomic) IBOutlet UITextField *spacers;
+@property (strong, nonatomic) IBOutlet UITextField *headsetCap;
 @property (strong, nonatomic) IBOutlet UIButton *backgroundButton;
+
 
 @property (nonatomic, assign) BOOL moveFormField;
 
@@ -110,7 +122,7 @@
     
     
     // SET SCROLLVIEW SIZE
-    CGSize contentScrollSize = CGSizeMake(320.0f, 350.0f);
+    CGSize contentScrollSize = CGSizeMake(320.0f, 1024.0f);
     CGPoint contentOffsetSize = CGPointMake(0.0f, 0.0f);
     [_scrollView setContentSize:contentScrollSize];
     [_scrollView setContentOffset:contentOffsetSize];
