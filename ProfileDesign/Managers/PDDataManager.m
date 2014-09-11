@@ -35,7 +35,7 @@
     
     // Specify how the fetched objects should be sorted
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title"
-                                                                   ascending:NO];
+                                                                   ascending:YES];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
     
     NSError *error = nil;

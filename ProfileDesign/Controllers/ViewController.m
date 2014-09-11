@@ -56,8 +56,9 @@
     [super viewDidLoad];
 
     // LOAD DATA INITIALLY
+    self.dm = [PDDataManager sharedInstance];
     [self.dm loadDataAsInitial:YES withCompletion:^{
-        [SVProgressHUD showSuccessWithStatus:@"Data Load\nComplete!"];
+        [SVProgressHUD showSuccessWithStatus:@"Data Loading\nComplete!"];
     }];
     
     [self.navigationController setNavigationBarHidden:YES];

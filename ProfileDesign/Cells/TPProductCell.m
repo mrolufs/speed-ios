@@ -38,11 +38,9 @@
         
         if (item != nil)
         {
-            NSLog(@"\n\n----------\nProduct: %@\n----------\n\n",item.title);
             self.title.text = item.title;
             self.details.text = item.details;
             
-            //NSString *productPath = [self cleanUpProductPath:[item productPath]];
             NSString *imagePath = [NSString stringWithFormat:@"%@%@", IMAGES_PATH, item.imageFile];
             
             NSURL *imgUrl = [NSURL URLWithString:imagePath];
