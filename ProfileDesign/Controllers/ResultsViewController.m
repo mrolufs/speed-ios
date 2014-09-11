@@ -10,10 +10,14 @@
 #import "Constants.h"
 #import "TPProduct.h"
 #import "TPProductCell.h"
+#import "PDProducts.h"
+#import "PDDataManager.h"
 
 @interface ResultsViewController ()
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *products;
+@property (nonatomic, strong) NSArray *products;
+
+@property (nonatomic, strong) PDDataManager *dm;
 @end
 
 @implementation ResultsViewController
@@ -21,6 +25,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // GET THE DATA MANAGER
+    self.dm = [PDDataManager sharedInstance];
     
     // SETUP TABLEVIEW
     self.tableView.delegate = self;
@@ -30,22 +37,13 @@
     [self.tableView setRowHeight:110.0f];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     
-    [self jsonLoad];
+    self.products = [self.dm fetchAllProducts];
 }
 
--(void)jsonLoad
+
+- (void)viewDidAppear:(BOOL)animated
 {
-    self.products = [[NSMutableArray alloc] init];
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:TPLUS_PRODUCTS_JSON ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-    for (id itm in json) {
-        //NSLog(@"json itm is %@", itm);
-        TPProduct *sObj = [[TPProduct alloc] initWithJSONObject:itm];
-        [self.products addObject:sObj];
-    }
-    
-    // REFRESH THE TABLEVIEW
+    [super viewDidAppear:animated];
     [self.tableView reloadData];
 }
 
@@ -83,7 +81,7 @@
     
     long row = indexPath.row;
     
-    TPProduct *product = (TPProduct*)[self.products objectAtIndex:row];
+    PDProducts *product = (PDProducts*)[self.products objectAtIndex:row];
     cell.item = product;
 }
 
@@ -92,12 +90,34 @@
     long row = indexPath.row;
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     
-    TPProduct *product = (TPProduct*)[self.products objectAtIndex:row];
-    NSString *urlString = product.weburl;
+    PDProducts *product = (PDProducts*)[self.products objectAtIndex:row];
+    NSString *urlString = [self cleanUpProductPath:product];
     NSURL *url = [NSURL URLWithString:urlString];
     if (![[UIApplication sharedApplication] openURL:url]) {
         NSLog(@"%@%@",@"Failed to open url: ",[url description]);
     }
+}
+
+
+#pragma mark - Data Cleanup Method
+
+- (NSString*)cleanUpProductPath:(PDProducts*)item
+{
+    NSString *retStr = @"";
+    NSString *path = item.productPath;
+    
+    if ([path length]>0)
+    {
+        if ([path isEqualToString:@"CARBON_AEROBARS_PATH"])
+        {
+            retStr = [NSString stringWithFormat:@"%@%@%@",PRODUCT_PATH,CARBON_AEROBARS_PATH,item.productFile];
+        }
+        else if ([path isEqualToString:@"ALUMINUM_AEROBARS_PATH"])
+        {
+            retStr = [NSString stringWithFormat:@"%@%@%@",PRODUCT_PATH,ALUMINUM_AEROBARS_PATH,item.productFile];
+        }
+    }
+    return retStr;
 }
 
 

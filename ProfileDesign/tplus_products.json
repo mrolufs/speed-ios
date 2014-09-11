@@ -1,30 +1,170 @@
-[
-	{
-		"title":"T4 Plus",
-		"details":"Shallow angle ski bend extensions suitable for triathlon or TT",
-		"fullsizeurl":"http://www.profile-design.com/files/product-images/profile-design/aerobars/t4_alloy_front.jpg",
-		"thumbnailurl":"http://www.profile-design.com/files/product-images/profile-design/aerobars/_thumbs/t4_alloy_front.jpg",
-		"weburl":"http://www.profile-design.com/profile-design/products/aerobars/aluminum-aerobars"
-	},
-	{
-		"title":"T3 Plus",
-		"details":"Multi-position drop bend extensions suitable for triathlon or time trial",
-		"fullsizeurl":"http://www.profile-design.com/files/product-images/profile-design/aerobars/pd_aerobar_t3plus_angle_1.jpg",
-		"thumbnailurl":"http://www.profile-design.com/files/product-images/profile-design/aerobars/_thumbs/pd_aerobar_t3plus_angle_1.jpg",
-		"weburl":"http://www.profile-design.com/profile-design/products/aerobars/aluminum-aerobars/t3-plus.html"
-	},
-	{
-		"title":"T2 Plus",
-		"details":"Affordable, lightweight aluminum construction",
-		"fullsizeurl":"http://www.profile-design.com/files/product-images/profile-design/aerobars/pd_aerobar_t2_alloy_angle.jpg",
-		"thumbnailurl":"http://www.profile-design.com/files/product-images/profile-design/aerobars/_thumbs/pd_aerobar_t2_alloy_angle.jpg",
-		"weburl":"http://www.profile-design.com/profile-design/products/aerobars/aluminum-aerobars/t2-plus.html"
-	},
-	{
-		"title":"T1 Plus",
-		"details":"Multi-position ski bend extensions suitable for triathlon or time trial",
-		"fullsizeurl":"http://www.profile-design.com/files/product-images/profile-design/aerobars/pd_aerobar_t1_alloy_angle.jpg",
-		"thumbnailurl":"http://www.profile-design.com/files/product-images/profile-design/aerobars/_thumbs/pd_aerobar_t1_alloy_angle.jpg",
-		"weburl":"http://www.profile-design.com/profile-design/products/aerobars/aluminum-aerobars/t1-plus.html"
-	}
-]
+ [
+  {
+  "title": "Aeria",
+  "productPath": "CARBON_AEROBARS_PATH",
+  "productFile":"",
+  "imageFile": "pd_aeria_front.jpg",
+  "details": "The most advanced integrate aerobar system within the Profile Design line. A patent-pending bracket system simultaneously clamps the extensions while attaching the brackets to the wing. The elegant design of the Aeria makes for ease of adjustment, and a smaller profile in the wind.  The range of stack goes from 55mm to 135mm to the armrest.",
+  "color": "Gloss UD Carbon",
+  "material": "Forged 6061-T6 AL, High-Modulus Carbon Fiber Wing",
+  "armrest": "F-35",
+  "armrestMaterial": "UD Carbon Fiber",
+  "weight": "663 grams"
+  },
+  {
+  "title": "T1+ Carbon",
+  "productPath": "CARBON_AEROBARS_PATH",
+  "productFile":"t1-plus-viper.html",
+  "imageFile": "pd_aerobar_t1_viper_black_angle_RHCVT11.jpg",
+  "details": "The original ergonomic extension bend provides multiple hand positions while aero. With 8 points of adjustment, the J4 Bracket on our T+ Carbon models fine-tunes to the millimeter to optimize the aero position.  The range of stack goes from 60mm to 95mm to the armrest using our Aerobar Bracket Riser Kit.",
+  "color": "Gloss UD Carbon or White",
+  "material": "Forged 6061-T6 AL brackets",
+  "armrest": "F-35 adjustable armrest",
+  "armrestMaterial": "Forged 6061-T6 AL brackets",
+  "weight": "590 grams"
+  },
+  {
+  "title": "T2+ Carbon",
+  "productPath": "CARBON_AEROBARS_PATH",
+  "productFile":"t2-plus-carbon.html",
+  "imageFile": "pd_aerobar_t2_carbon_black_angle_RHCT21.jpg",
+  "details": "The T2+ allows for the most aggressive, low profile position within the T+ Carbon Series. With 8 points of adjustment, the J4 Bracket on our T+ Carbon models fine-tunes to the millimeter to optimize the aero position.  The range of stack goes from 60mm to 95mm to the armrest using our Aerobar Bracket Riser Kit.",
+  "color": "Gloss UD Carbon or White",
+  "material": "Forged 6061-T6 AL brackets",
+  "armrest": "F-35 adjustable armrest",
+  "armrestMaterial": "Forged 6061-T6 AL brackets",
+  "weight": "584 grams"
+  },
+  {
+  "title": "T3+ Carbon",
+  "productPath": "CARBON_AEROBARS_PATH",
+  "productFile":"t3-plus-carbon.html",
+  "imageFile": "pd_aerobar_t3_carbon_black_angle_RHCT31.jpg",
+  "details": "The low profile, ergonomic bend of the T3+ keeps wrists in a neutral, more natural position while aero. With 8 points of adjustment, the J4 Bracket on our T+ Carbon models fine-tunes to the millimeter to optimize the aero position.  The range of stack goes from 60mm to 95mm to the armrest using our Aerobar Bracket Riser Kit.",
+  "color": "Gloss UD Carbon or White",
+  "material": "Forged 6061-T6 AL brackets",
+  "armrest": "F-35 adjustable armrest",
+  "armrestMaterial": "Forged 6061-T6 AL brackets",
+  "weight": "620 grams"
+  },
+  {
+  "title": "T4+ Carbon",
+  "productPath": "CARBON_AEROBARS_PATH",
+  "productFile":"t4-plus-carbon.html",
+  "imageFile": "pd_aerobar_t4_carbon_black_angle_RHCT41.jpg",
+  "details": "An ergonomic ski-bend that places the rider in a low profile racing position. With 8 points of adjustment, the J4 Bracket on our T+ Carbon models fine-tunes to the millimeter to optimize the aero position. The range of stack goes from 60mm to 95mm to the armrest using our Aerobar Bracket Riser Kit.",
+  "color": "Gloss Carbon or White",
+  "material": "Forged 6061-T6 AL brackets",
+  "armrest": "F-35 adjustable armrest",
+  "armrestMaterial": "Forged 6061-T6 AL brackets",
+  "weight": "600 grams"
+  },
+  {
+  "title": "T1+ Aluminum",
+  "productPath": "ALUMINUM_AEROBARS_PATH",
+  "productFile":"t1-plus.html",
+  "imageFile": "pd_aerobar_t4_carbon_black_angle_RHCT41.jpg",
+  "details": "The original extension bend provides multiple hand positions while aero. The accompanying J2 Bracket, isolated from the basebar bracket, allows for a wide range of armrest adjustment possibilities. The range of stack goes from 60mm to 95mm to the armrest using our Aerobar Bracket Riser Kit.",
+  "color": "Anodized Matte Black",
+  "material": "Forged 6061-T6 AL",
+  "armrest": "F-19 injection molded",
+  "armrestMaterial": "Forged 6061-T6 AL",
+  "weight": "545 grams"
+  },
+  {
+  "title": "T2+ Aluminum",
+  "productPath": "ALUMINUM_AEROBARS_PATH",
+  "productFile":"t2-plus.html",
+  "imageFile": "pd_aerobar_t2_alloy_angle.jpg",
+  "details": "The T2+ allows for the most aggressive, low profile position within the T+ Aluminum Series. The accompanying J2 Bracket, isolated from the basebar bracket, allows for a wide range of armrest adjustment possibilities. The range of stack goes from 60mm to 95mm to the armrest using our Aerobar Bracket Riser Kit.",
+  "color": "Anodized Matte Black",
+  "material": "Forged 6061-T6 AL",
+  "armrest": "F-19 injection molded",
+  "armrestMaterial": "Forged 6061-T6 AL",
+  "weight": "500 grams"
+  },
+  {
+  "title": "T3+ Aluminum",
+  "productPath": "ALUMINUM_AEROBARS_PATH",
+  "productFile":"t3-plus.html",
+  "imageFile": "pd_aerobar_t3plus_angle_1.jpg",
+  "details": "The low profile, ergonomic bend of the T3+ keeps wrists in a neutral, more natural position while aero. The accompanying J2 Bracket, isolated from the basebar bracket, allows for a wide range of armrest adjustment possibilities. The range of stack goes from 60mm to 95mm to the armrest using our Aerobar Bracket Riser Kit.",
+  "color": "Anodized Matte Black",
+  "material": "Forged 6061-T6 AL",
+  "armrest": "F-19 injection molded",
+  "armrestMaterial": "Forged 6061-T6 AL",
+  "weight": "530 grams"
+  },
+  {
+  "title": "T4+ Aluminum",
+  "productPath": "ALUMINUM_AEROBARS_PATH",
+  "productFile":"",
+  "imageFile": "t4_alloy_front.jpg",
+  "details": "A ski-bend that places the rider in a low profile racing position. The accompanying J2 Bracket, isolated from the basebar bracket, allows for a wide range of armrest adjustment possibilities. The range of stack goes from 60mm to 95mm to the armrest using our Aerobar Bracket Riser Kit.",
+  "color": "Anodized Matte Black",
+  "material": "Forged 6061-T6 AL",
+  "armrest": "F-19 injection molded",
+  "armrestMaterial": "Forged 6061-T6 AL",
+  "weight": "469 grams"
+  },
+  {
+  "title": "ZBS DL",
+  "productPath": "ALUMINUM_AEROBARS_PATH",
+  "productFile":"zbs-dl.html",
+  "imageFile": "pd_aerobar_zbs_dl_angle_1.jpg",
+  "details": "This system is specifically designed to put the rider in a low profile aero position while keeping within the draft legal racing regulations.  The range of stack goes from 37mm to 52mm to the armrest using our Aerobar Bracket Riser Kit. NOTE: This angled bracket system causes the reach to increase slightly when increasing the stack.",
+  "color": "Gloss Black",
+  "material": "Forged 6061-T6 AL",
+  "armrest": "F-19 injection molded",
+  "armrestMaterial": "Forged 6061-T6 AL",
+  "weight": "470 grams"
+  },
+  {
+  "title": "ZBS S-Bend",
+  "productPath": "ALUMINUM_AEROBARS_PATH",
+  "productFile":"zbs-s-bend.html",
+  "imageFile": "pd_aerobar_zbs_s_bend_angle_1.jpg",
+  "details": "This is a fast extension that pairs with any bike to make an aggressive position for time trials or multi-sport performance. The range of stack goes from 37mm to 52mm to the armrest using our Aerobar Bracket Riser Kit. NOTE: This angled bracket system causes the reach to increase slightly when increasing the stack.",
+  "color": "Gloss Black",
+  "material": "Forged 6061-T6 AL",
+  "armrest": "F-19 injection molded",
+  "armrestMaterial": "Forged 6061-T6 AL",
+  "weight": "426 grams"
+  },
+  {
+  "title": "ZBS Stryke Bend",
+  "productPath": "ALUMINUM_AEROBARS_PATH",
+  "productFile":"zbs-stryke-bend.html",
+  "imageFile": "pd_aerobar_zbs_stryke_bend_angle_1.jpg",
+  "details": "This extension is a classic and unique design in the Profile Design collection. The bend moves slightly outward allowing your arms to follow a straight line from armrest to grip. The range of stack goes from 37mm to 52mm to the armrest using our Aerobar Bracket Riser Kit. NOTE: This angled bracket system causes the reach to increase slightly when increasing the stack.",
+  "color": "Gloss Black",
+  "material": "Forged 6061-T6 AL",
+  "armrest": "F-19 injection molded",
+  "armrestMaterial": "Forged 6061-T6 AL",
+  "weight": "438 grams"
+  },
+  {
+  "title": "ZBS Ski-Bend",
+  "productPath": "ALUMINUM_AEROBARS_PATH",
+  "productFile":"zbs-ski-bend.html",
+  "imageFile": "pd_aerobar_zbs_ski_bend_angle_1.jpg",
+  "details": "The Ski bend extension is an ergonomic bend to keep your wrists in a neutral position while riding in the aero position. The range of stack goes from 37mm to 52mm to the armrest using our Aerobar Bracket Riser Kit. NOTE: This angled bracket system causes the reach to increase slightly when increasing the stack.",
+  "color": "Gloss Black",
+  "material": "Forged 6061-T6 AL",
+  "armrest": "F-19 injection molded",
+  "armrestMaterial": "Forged 6061-T6 AL",
+  "weight": "432 grams"
+  },
+  {
+  "title": "ZBS TT",
+  "productPath": "ALUMINUM_AEROBARS_PATH",
+  "productFile":"zbs-tt.html",
+  "imageFile": "pd_aerobar_zbs_tt_angle_1.jpg",
+  "details": "Combined with the low profile ZB system, the TT extension makes this aerobar the most aggressive system offered by Profile Design. The range of stack goes from 37mm to 52mm to the armrest using our Aerobar Bracket Riser Kit. NOTE: This angled bracket system causes the reach to increase slightly when increasing the stack.",
+  "color": "Gloss Black",
+  "material": "Forged 6061-T6 AL",
+  "armrest": "F-19 injection molded",
+  "armrestMaterial": "Forged 6061-T6 AL",
+  "weight": "435 grams"
+  }
+  ]

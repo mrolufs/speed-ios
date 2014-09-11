@@ -7,7 +7,8 @@
 //
 
 #import "TPProductCell.h"
-#import "TPProduct.h"
+#import "PDProducts.h"
+#import "Constants.h"
 
 @interface TPProductCell ()
 @property (nonatomic, strong) IBOutlet UIImageView *thumb;
@@ -28,7 +29,7 @@
     return self;
 }
 
--(void)setItem:(TPProduct*)newItem
+-(void)setItem:(PDProducts*)newItem
 {
     if (newItem != item)
     {
@@ -39,13 +40,18 @@
         {
             NSLog(@"\n\n----------\nProduct: %@\n----------\n\n",item.title);
             self.title.text = item.title;
-            self.details.text = item.detail;
-            NSURL *url = [NSURL URLWithString:item.thumbnailurl];
-            NSData *imgData = [NSData dataWithContentsOfURL:url];
+            self.details.text = item.details;
+            
+            //NSString *productPath = [self cleanUpProductPath:[item productPath]];
+            NSString *imagePath = [NSString stringWithFormat:@"%@%@", IMAGES_PATH, item.imageFile];
+            
+            NSURL *imgUrl = [NSURL URLWithString:imagePath];
+            NSData *imgData = [NSData dataWithContentsOfURL:imgUrl];
             UIImage *img = [UIImage imageWithData:imgData];
             [self.thumb setImage:img];
         }
     }
 }
+
 
 @end

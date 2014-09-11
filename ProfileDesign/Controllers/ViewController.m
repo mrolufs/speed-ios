@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "LLModalPickerView.h"
+#import "PDDataManager.h"
 
 @interface ViewController () <UITextFieldDelegate, UIPickerViewDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -39,6 +40,8 @@
 @property (nonatomic, strong) NSArray *armRestReachChoices;
 @property (nonatomic, strong) NSArray *stemAngleChoices;
 
+@property (nonatomic, strong) PDDataManager *dm;
+
 
 -(IBAction)goNextField:(id)sender;
 @end
@@ -51,7 +54,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	//[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar"] forBarMetrics:UIBarMetricsDefault];
+
+    // LOAD DATA INITIALLY
+    [self.dm loadDataAsInitial:YES withCompletion:^{
+        [SVProgressHUD showSuccessWithStatus:@"Data Load\nComplete!"];
+    }];
+    
     [self.navigationController setNavigationBarHidden:YES];
     
     // SET FORM FIELD ACTIONS
@@ -82,6 +90,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIKeyboardWillHideNotification
                                                   object:self.view.window];
+}
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
 }
 
 -(void)setupUI
