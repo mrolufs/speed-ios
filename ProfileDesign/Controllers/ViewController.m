@@ -38,6 +38,9 @@
 @property (nonatomic, strong) NSArray *armRestStackChoices;
 @property (nonatomic, strong) NSArray *armRestReachChoices;
 @property (nonatomic, strong) NSArray *stemAngleChoices;
+@property (nonatomic, strong) NSArray *stemLengthChoices;
+@property (nonatomic, strong) NSArray *spacersChoices;
+@property (nonatomic, strong) NSArray *headsetCapChoices;
 
 
 -(IBAction)goNextField:(id)sender;
@@ -102,13 +105,25 @@
     [_stemAngle addTarget:self
                     action:@selector(goNextField:)
           forControlEvents:UIControlEventEditingDidEndOnExit];
+    [_stemLength addTarget:self
+                   action:@selector(goNextField:)
+         forControlEvents:UIControlEventEditingDidEndOnExit];
+    [_spacers addTarget:self
+                    action:@selector(goNextField:)
+          forControlEvents:UIControlEventEditingDidEndOnExit];
+    [_headsetCap addTarget:self
+                 action:@selector(goNextField:)
+       forControlEvents:UIControlEventEditingDidEndOnExit];
     
     // SET DEFAULT VALUES FOR EACH TEXT FIELD
-    [_frameStack setText:@"Choice One"];
-    [_frameReach setText:@"Choice One"];
-    [_armRestStack setText:@"Choice One"];
-    [_armRestReach setText:@"Choice One"];
+//    [_frameStack setText:@"Choice One"];
+//    [_frameReach setText:@"Choice One"];
+//    [_armRestStack setText:@"Choice One"];
+//    [_armRestReach setText:@"Choice One"];
     [_stemAngle setText:@"0"];
+    [_stemLength setText:@"60"];
+    [_spacers setText:@"0.0"];
+    [_headsetCap setText:@"0"];
     
     // SET EACH FIELD DELEGATE
     [_frameStack setDelegate:self];
@@ -116,6 +131,10 @@
     [_armRestStack setDelegate:self];
     [_armRestReach setDelegate:self];
     [_stemAngle setDelegate:self];
+    [_stemLength setDelegate:self];
+    [_spacers setDelegate:self];
+    [_headsetCap setDelegate:self];
+
 
     // MAKE THE FRAME STACK FIELD FIRST RESPONDER
     //[_frameStack becomeFirstResponder];
@@ -134,7 +153,10 @@
     _bikeFrameReachChoices = @[@"Choice One",@"Choice Two",@"Choice Three"];
     _armRestStackChoices = @[@"Choice One",@"Choice Two",@"Choice Three"];
     _armRestReachChoices = @[@"Choice One",@"Choice Two",@"Choice Three"];
-    _stemAngleChoices = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"];
+    _stemAngleChoices = @[@"-25",@"-17",@"-12",@"-10",@"-7",@"-6",@"0",@"6",@"7",@"10",@"12",@"17",@"25"];
+    _stemLengthChoices = @[@"60",@"70",@"80",@"90",@"100",@"110",@"120",@"130"];
+    _spacersChoices = @[@"0.0",@"2.5",@"5.0",@"7.5",@"10.0",@"12.5",@"15.0",@"17.5",@"20.0",@"22.5",@"25.0",@"27.5",@"30.0",@"32.5",@"35.0",@"37.5",@"40.0"];
+    _headsetCapChoices = @[@"0",@"5",@"10",@"15",@"20"];
     
 
 }
@@ -156,7 +178,13 @@
     else if (sender == _armRestReach)
         [_stemAngle becomeFirstResponder];
     else if (sender == _stemAngle)
-        [_stemAngle resignFirstResponder];
+        [_stemLength becomeFirstResponder];
+    else if (sender == _stemLength)
+        [_spacers becomeFirstResponder];
+    else if (sender == _spacers)
+        [_headsetCap becomeFirstResponder];
+    else if (sender == _headsetCap)
+        [_headsetCap resignFirstResponder];
     else
         [_frameStack becomeFirstResponder];
 }
@@ -212,39 +240,30 @@
         }];
         return NO;
         
-    } else if (textField == _frameStack) {
+    } else if (textField == _stemLength) {
         
-        LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_bikeFrameStackChoices];
-        [pickerView setSelectedValue:_frameStack.text];
+        LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_stemLengthChoices];
+        [pickerView setSelectedValue:_stemLength.text];
         [pickerView presentInView:self.view withBlock:^(BOOL madeChoice) {
-            [_frameStack setText:pickerView.selectedValue];
+            [_stemLength setText:pickerView.selectedValue];
         }];
         return NO;
         
-    } else if (textField == _frameReach) {
+    } else if (textField == _spacers) {
         
-        LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_bikeFrameReachChoices];
-        [pickerView setSelectedValue:_frameReach.text];
+        LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_spacersChoices];
+        [pickerView setSelectedValue:_spacers.text];
         [pickerView presentInView:self.view withBlock:^(BOOL madeChoice) {
-            [_frameReach setText:pickerView.selectedValue];
+            [_spacers setText:pickerView.selectedValue];
         }];
         return NO;
         
-    } else if (textField == _armRestStack) {
+    } else if (textField == _headsetCap) {
         
-        LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_armRestStackChoices];
-        [pickerView setSelectedValue:_armRestStack.text];
+        LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_headsetCapChoices];
+        [pickerView setSelectedValue:_headsetCap.text];
         [pickerView presentInView:self.view withBlock:^(BOOL madeChoice) {
-            [_armRestStack setText:pickerView.selectedValue];
-        }];
-        return NO;
-        
-    } else if (textField == _armRestReach) {
-        
-        LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_armRestReachChoices];
-        [pickerView setSelectedValue:_armRestReach.text];
-        [pickerView presentInView:self.view withBlock:^(BOOL madeChoice) {
-            [_armRestReach setText:pickerView.selectedValue];
+            [_headsetCap setText:pickerView.selectedValue];
         }];
         return NO;
         
@@ -258,6 +277,12 @@
 {
     if (textField == _stemAngle)
         _moveFormField = YES;
+    else if(textField == _stemLength)
+        _moveFormField = YES;
+    else if(textField == _spacers)
+        _moveFormField = YES;
+    else if(textField == _headsetCap)
+        _moveFormField = YES;
     
     activeField = textField;
 }
@@ -265,6 +290,12 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField == _stemAngle)
+        _moveFormField = NO;
+    else if(textField == _stemLength)
+        _moveFormField = NO;
+    else if(textField == _spacers)
+        _moveFormField = NO;
+    else if(textField == _headsetCap)
         _moveFormField = NO;
     
     activeField = nil;
