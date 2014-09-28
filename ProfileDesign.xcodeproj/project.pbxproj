@@ -25,6 +25,8 @@
 		DB98231919456FA40064F7E0 /* navbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB98231719456FA40064F7E0 /* navbar@2x.png */; };
 		DB98231D194570FA0064F7E0 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB98231C194570FA0064F7E0 /* FilterViewController.m */; };
 		DBA965A919C17D15000A69BD /* PDDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA965A819C17D15000A69BD /* PDDataManager.m */; };
+		DBB9D80C19D7C81E007BF93A /* ResultsTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBB9D80B19D7C81E007BF93A /* ResultsTableHeaderView.m */; };
+		DBB9D80E19D7CC76007BF93A /* ResultsTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBB9D80D19D7CC76007BF93A /* ResultsTableHeaderView.xib */; };
 		DBC97AAC194106A200761779 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC97AAB194106A200761779 /* Foundation.framework */; };
 		DBC97AAE194106A200761779 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC97AAD194106A200761779 /* CoreGraphics.framework */; };
 		DBC97AB0194106A200761779 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC97AAF194106A200761779 /* UIKit.framework */; };
@@ -79,6 +81,9 @@
 		DB98231C194570FA0064F7E0 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		DBA965A719C17D15000A69BD /* PDDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDDataManager.h; sourceTree = "<group>"; };
 		DBA965A819C17D15000A69BD /* PDDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDDataManager.m; sourceTree = "<group>"; };
+		DBB9D80A19D7C81E007BF93A /* ResultsTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsTableHeaderView.h; sourceTree = "<group>"; };
+		DBB9D80B19D7C81E007BF93A /* ResultsTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsTableHeaderView.m; sourceTree = "<group>"; };
+		DBB9D80D19D7CC76007BF93A /* ResultsTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsTableHeaderView.xib; sourceTree = "<group>"; };
 		DBC97AA8194106A200761779 /* ProfileDesign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProfileDesign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBC97AAB194106A200761779 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DBC97AAD194106A200761779 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -290,6 +295,9 @@
 			children = (
 				DBE1DABF194F07DC004490A2 /* LLModalPickerView.h */,
 				DBE1DAC0194F07DC004490A2 /* LLModalPickerView.m */,
+				DBB9D80A19D7C81E007BF93A /* ResultsTableHeaderView.h */,
+				DBB9D80B19D7C81E007BF93A /* ResultsTableHeaderView.m */,
+				DBB9D80D19D7CC76007BF93A /* ResultsTableHeaderView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -373,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB98231519456C970064F7E0 /* pd_logo_horizontal_white.png in Resources */,
+				DBB9D80E19D7CC76007BF93A /* ResultsTableHeaderView.xib in Resources */,
 				DBC97AC4194106A200761779 /* Images.xcassets in Resources */,
 				DBC97AB6194106A200761779 /* InfoPlist.strings in Resources */,
 				DB98231319456C040064F7E0 /* grid_vert.png in Resources */,
@@ -443,6 +452,7 @@
 				DB0FA64A19C155C60010B538 /* ProfileDesign.xcdatamodeld in Sources */,
 				DB5DA8A91991E3AC00789FFE /* TPProduct.m in Sources */,
 				DBE1DAC1194F07DC004490A2 /* LLModalPickerView.m in Sources */,
+				DBB9D80C19D7C81E007BF93A /* ResultsTableHeaderView.m in Sources */,
 				DB98231D194570FA0064F7E0 /* FilterViewController.m in Sources */,
 				DB5DA8AE1991E53B00789FFE /* TPProductCell.m in Sources */,
 			);

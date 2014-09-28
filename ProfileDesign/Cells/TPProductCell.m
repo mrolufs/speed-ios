@@ -11,9 +11,15 @@
 #import "Constants.h"
 
 @interface TPProductCell ()
-@property (nonatomic, strong) IBOutlet UIImageView *thumb;
-@property (nonatomic, strong) IBOutlet UILabel *title;
-@property (nonatomic, strong) IBOutlet UILabel *details;
+
+@property (nonatomic, weak) IBOutlet UIImageView *thumb;
+@property (nonatomic, weak) IBOutlet UILabel *title;
+@property (nonatomic, weak) IBOutlet UITextView *details;
+@property (nonatomic, weak) IBOutlet UILabel *colors;
+@property (nonatomic, weak) IBOutlet UILabel *material;
+@property (nonatomic, weak) IBOutlet UILabel *armrest;
+@property (nonatomic, weak) IBOutlet UILabel *armrestMaterial;
+@property (nonatomic, weak) IBOutlet UILabel *weight;
 
 @end
 
@@ -40,6 +46,11 @@
         {
             self.title.text = item.title;
             self.details.text = item.details;
+            self.colors.text = item.color;
+            self.material.text = item.material;
+            self.armrest.text = item.armrest;
+            self.armrestMaterial.text = item.armrestMaterial;
+            self.weight.text = item.weight;
             
             NSString *imagePath = [NSString stringWithFormat:@"%@%@", IMAGES_PATH, item.imageFile];
             

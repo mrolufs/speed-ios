@@ -7,6 +7,7 @@
 //
 
 #import "ResultsViewController.h"
+#import "ResultsTableHeaderView.h"
 #import "Constants.h"
 #import "TPProduct.h"
 #import "TPProductCell.h"
@@ -37,6 +38,9 @@
     [self.tableView setRowHeight:110.0f];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     
+    ResultsTableHeaderView *headerView = [ResultsTableHeaderView newViewWithFrame:CGRectMake(0, 0, 320.0f, 150.0f)];
+    [self.tableView setTableHeaderView:headerView];
+    
     self.products = [self.dm fetchAllProducts];
 }
 
@@ -58,7 +62,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - UITableViewDataSource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 400.0f;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
