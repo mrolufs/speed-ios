@@ -41,6 +41,9 @@
 		DBC97ACD194106A200761779 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC97AAF194106A200761779 /* UIKit.framework */; };
 		DBC97AD5194106A200761779 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DBC97AD3194106A200761779 /* InfoPlist.strings */; };
 		DBC97AD7194106A200761779 /* ProfileDesignTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC97AD6194106A200761779 /* ProfileDesignTests.m */; };
+		DBDEDACF19E3A73F0034838C /* EvaluationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDEDACE19E3A73F0034838C /* EvaluationManager.m */; };
+		DBDEDAD319E3B3540034838C /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDEDAD219E3B3540034838C /* Product.m */; };
+		DBDEDAD619E3B3710034838C /* Aeria.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDEDAD519E3B3710034838C /* Aeria.m */; };
 		DBE1DABD19486998004490A2 /* pd_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DBE1DABC19486998004490A2 /* pd_logo.png */; };
 		DBE1DAC1194F07DC004490A2 /* LLModalPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE1DAC0194F07DC004490A2 /* LLModalPickerView.m */; };
 		DBE1DAC4194F1813004490A2 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE1DAC3194F1813004490A2 /* ResultsViewController.m */; };
@@ -103,6 +106,12 @@
 		DBC97AD2194106A200761779 /* ProfileDesignTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ProfileDesignTests-Info.plist"; sourceTree = "<group>"; };
 		DBC97AD4194106A200761779 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DBC97AD6194106A200761779 /* ProfileDesignTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileDesignTests.m; sourceTree = "<group>"; };
+		DBDEDACD19E3A73F0034838C /* EvaluationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluationManager.h; sourceTree = "<group>"; };
+		DBDEDACE19E3A73F0034838C /* EvaluationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvaluationManager.m; sourceTree = "<group>"; };
+		DBDEDAD119E3B3540034838C /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		DBDEDAD219E3B3540034838C /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		DBDEDAD419E3B3710034838C /* Aeria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aeria.h; sourceTree = "<group>"; };
+		DBDEDAD519E3B3710034838C /* Aeria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aeria.m; sourceTree = "<group>"; };
 		DBE1DABC19486998004490A2 /* pd_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pd_logo.png; sourceTree = "<group>"; };
 		DBE1DABF194F07DC004490A2 /* LLModalPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLModalPickerView.h; sourceTree = "<group>"; };
 		DBE1DAC0194F07DC004490A2 /* LLModalPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLModalPickerView.m; sourceTree = "<group>"; };
@@ -201,6 +210,8 @@
 			children = (
 				DBA965A719C17D15000A69BD /* PDDataManager.h */,
 				DBA965A819C17D15000A69BD /* PDDataManager.m */,
+				DBDEDACD19E3A73F0034838C /* EvaluationManager.h */,
+				DBDEDACE19E3A73F0034838C /* EvaluationManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -244,6 +255,7 @@
 		DBC97AB1194106A200761779 /* ProfileDesign */ = {
 			isa = PBXGroup;
 			children = (
+				DBDEDAD019E3B31D0034838C /* Product Classes */,
 				DBA965A619C17CD0000A69BD /* Managers */,
 				DB5DA8AA1991E4E500789FFE /* Cells */,
 				DB5DA8A61991E32A00789FFE /* Models */,
@@ -288,6 +300,17 @@
 				DBC97AD3194106A200761779 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DBDEDAD019E3B31D0034838C /* Product Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DBDEDAD119E3B3540034838C /* Product.h */,
+				DBDEDAD219E3B3540034838C /* Product.m */,
+				DBDEDAD419E3B3710034838C /* Aeria.h */,
+				DBDEDAD519E3B3710034838C /* Aeria.m */,
+			);
+			path = "Product Classes";
 			sourceTree = "<group>";
 		};
 		DBE1DABE194F075C004490A2 /* Views */ = {
@@ -443,12 +466,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBDEDAD619E3B3710034838C /* Aeria.m in Sources */,
 				DBC97AC2194106A200761779 /* ViewController.m in Sources */,
 				DBA965A919C17D15000A69BD /* PDDataManager.m in Sources */,
 				DBC97ABC194106A200761779 /* AppDelegate.m in Sources */,
 				DBC97AB8194106A200761779 /* main.m in Sources */,
+				DBDEDACF19E3A73F0034838C /* EvaluationManager.m in Sources */,
 				DB950FE319C17B1C0034BCDE /* PDProducts.m in Sources */,
 				DBE1DAC4194F1813004490A2 /* ResultsViewController.m in Sources */,
+				DBDEDAD319E3B3540034838C /* Product.m in Sources */,
 				DB0FA64A19C155C60010B538 /* ProfileDesign.xcdatamodeld in Sources */,
 				DB5DA8A91991E3AC00789FFE /* TPProduct.m in Sources */,
 				DBE1DAC1194F07DC004490A2 /* LLModalPickerView.m in Sources */,

@@ -6,33 +6,47 @@
 //  Copyright (c) 2014 Torqd Studios, LLC. All rights reserved.
 //
 
+#import <math.h>
 #import "ViewController.h"
 #import "LLModalPickerView.h"
 #import "PDDataManager.h"
+#import "FilterViewController.h"
+#import "ResultsViewController.h"
+#import "EvaluationManager.h"
+#import "Product.h"
+
+const static double STEM_ANGLE_ADDITIVE = 17;
+const static double STEM_LENGTH_ADDITIVE = 18.72;
+const static double SPACERS_ADDITIVE = 20;
+
+
 
 @interface ViewController () <UITextFieldDelegate, UIPickerViewDelegate>
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) UITextField *activeField;
-@property (strong, nonatomic) IBOutlet UILabel *frameStackLabel;
-@property (strong, nonatomic) IBOutlet UILabel *frameReachLabel;
-@property (strong, nonatomic) IBOutlet UILabel *armRestStackLabel;
-@property (strong, nonatomic) IBOutlet UILabel *armRestReachLabel;
-@property (strong, nonatomic) IBOutlet UILabel *stemAngleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *stemLengthLabel;
-@property (strong, nonatomic) IBOutlet UILabel *spacersLabel;
-@property (strong, nonatomic) IBOutlet UILabel *headsetCapLabel;
-@property (strong, nonatomic) IBOutlet UITextField *frameStack;
-@property (strong, nonatomic) IBOutlet UITextField *frameReach;
-@property (strong, nonatomic) IBOutlet UITextField *armRestStack;
-@property (strong, nonatomic) IBOutlet UITextField *armRestReach;
-@property (strong, nonatomic) IBOutlet UITextField *stemAngle;
-@property (strong, nonatomic) IBOutlet UITextField *stemLength;
-@property (strong, nonatomic) IBOutlet UITextField *spacers;
-@property (strong, nonatomic) IBOutlet UITextField *headsetCap;
-@property (strong, nonatomic) IBOutlet UIButton *backgroundButton;
 
+@property (nonatomic, strong) FilterViewController *filterViewController;
+@property (nonatomic, strong) ResultsViewController *resultsViewController;
 
-@property (nonatomic, assign) BOOL moveFormField;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) UITextField *activeField;
+@property (nonatomic, weak) IBOutlet UILabel *frameStackLabel;
+@property (nonatomic, weak) IBOutlet UILabel *frameReachLabel;
+@property (nonatomic, weak) IBOutlet UILabel *armRestStackLabel;
+@property (nonatomic, weak) IBOutlet UILabel *armRestReachLabel;
+@property (nonatomic, weak) IBOutlet UILabel *stemAngleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *stemLengthLabel;
+@property (nonatomic, weak) IBOutlet UILabel *spacersLabel;
+@property (nonatomic, weak) IBOutlet UILabel *headsetCapLabel;
+@property (nonatomic, weak) IBOutlet UITextField *frameStack;
+@property (nonatomic, weak) IBOutlet UITextField *frameReach;
+@property (nonatomic, weak) IBOutlet UITextField *armRestStack;
+@property (nonatomic, weak) IBOutlet UITextField *armRestReach;
+@property (nonatomic, weak) IBOutlet UITextField *stemAngle;
+@property (nonatomic, weak) IBOutlet UITextField *stemLength;
+@property (nonatomic, weak) IBOutlet UITextField *spacers;
+@property (nonatomic, weak) IBOutlet UITextField *headsetCap;
+@property (nonatomic, weak) IBOutlet UIButton *backgroundButton;
+
+@property (nonatomic) BOOL moveFormField;
 
 @property (nonatomic, strong) NSArray *bikeFrameStackChoices;
 @property (nonatomic, strong) NSArray *bikeFrameReachChoices;
@@ -43,10 +57,13 @@
 @property (nonatomic, strong) NSArray *spacersChoices;
 @property (nonatomic, strong) NSArray *headsetCapChoices;
 
+@property (nonatomic, strong) NSArray *resultSet;
+
 @property (nonatomic, strong) PDDataManager *dm;
 
+- (IBAction)goNextField:(id)sender;
+- (IBAction)submitButtonAction:(UIButton *)button;
 
--(IBAction)goNextField:(id)sender;
 @end
 
 
@@ -130,10 +147,6 @@
        forControlEvents:UIControlEventEditingDidEndOnExit];
     
     // SET DEFAULT VALUES FOR EACH TEXT FIELD
-//    [_frameStack setText:@"Choice One"];
-//    [_frameReach setText:@"Choice One"];
-//    [_armRestStack setText:@"Choice One"];
-//    [_armRestReach setText:@"Choice One"];
     [_stemAngle setText:@"0"];
     [_stemLength setText:@"60"];
     [_spacers setText:@"0.0"];
@@ -159,6 +172,8 @@
     CGPoint contentOffsetSize = CGPointMake(0.0f, 0.0f);
     [_scrollView setContentSize:contentScrollSize];
     [_scrollView setContentOffset:contentOffsetSize];
+    CGRect frame = _scrollView.frame;
+    self.backgroundButton.frame = frame;
 }
 
 -(void)setupPickerChoices
@@ -203,10 +218,8 @@
         [_frameStack becomeFirstResponder];
 }
 
--(IBAction)resignAllFields:(id)sender
-{
-    [self.view endEditing:YES];
-}
+
+#pragma mark - Keyboard Methods
 
 - (void)keyboardWillHide:(NSNotification *)n
 {
@@ -242,7 +255,10 @@
 //    }
 }
 
-- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+
+#pragma mark - UITextField Delegate Methods
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (textField == _stemAngle)
     {
@@ -283,8 +299,6 @@
         
     } else
         return YES;
-    
-    
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -314,4 +328,78 @@
     
     activeField = nil;
 }
+
+
+#pragma mark - Field Check
+
+- (void)validateFormFields
+{
+    
+}
+
+#pragma mark - Button Actions
+
+- (IBAction)submitButtonAction:(UIButton *)button
+{
+    [self validateFormFields];
+    NSString *bikeStack = self.frameStack.text;
+    NSString *bikeReach = self.frameReach.text;
+    NSString *fitStack = self.armRestStack.text;
+    NSString *fitReach = self.armRestReach.text;
+    NSString *sAngle = self.stemAngle.text;
+    NSString *sLength = self.stemLength.text;
+    NSString *spacersValue = self.spacers.text;
+    NSString *hsCap = self.headsetCap.text;
+    
+    
+    NSInteger dstack = [fitStack intValue] - [bikeStack intValue];
+    NSInteger dreach = 0;
+    
+    double deg = M_PI / 180;
+    
+    double stemLeft = sin(([sAngle intValue] + STEM_ANGLE_ADDITIVE) * deg) * [sLength intValue];
+    double stemRight = cos((STEM_ANGLE_ADDITIVE) * deg) * (SPACERS_ADDITIVE + [spacersValue intValue] + [hsCap intValue]);
+    double stemStack = stemLeft + stemRight;
+    double stemReach = 0;
+    
+    double aerobar_stack = dstack - stemStack;
+    double aerobar_reach = 0;
+    
+    dreach = [fitReach intValue] - [bikeReach intValue];
+    
+    double stemLeftReach = cos(([sAngle intValue] + STEM_ANGLE_ADDITIVE) * deg) * [sLength intValue];
+    double stemRightReach = sin((STEM_ANGLE_ADDITIVE) * deg) * (SPACERS_ADDITIVE + [spacersValue intValue] + [hsCap intValue]);
+    
+    stemReach = stemLeftReach - stemRightReach;
+    
+    aerobar_reach = dreach - stemReach;
+    
+    NSInteger stackResult = round(aerobar_stack);
+    NSInteger reachResult = round(aerobar_reach);
+    
+    EvaluationManager *em = [EvaluationManager sharedInstance];
+    [em evaluateStack:stackResult andReach:reachResult];
+}
+
+- (IBAction)resignAllFields:(id)sender
+{
+    [self.view endEditing:YES];
+}
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"mainToFilter"])
+    {
+        self.filterViewController = segue.destinationViewController;
+    }
+    else if ([[segue identifier] isEqualToString:@"mainToResults"])
+    {
+        self.resultsViewController = segue.destinationViewController;
+    }
+}
+
 @end
