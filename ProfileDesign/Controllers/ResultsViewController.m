@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *products;
 
 @property (nonatomic, strong) PDDataManager *dm;
+
 @end
 
 @implementation ResultsViewController
@@ -37,11 +38,12 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"TPProductCell" bundle:nil] forCellReuseIdentifier:@"ProductCell"];
     [self.tableView setRowHeight:110.0f];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     
     ResultsTableHeaderView *headerView = [ResultsTableHeaderView newViewWithFrame:CGRectMake(0, 0, 320.0f, 150.0f)];
     [self.tableView setTableHeaderView:headerView];
     
-    self.products = [self.dm fetchAllProducts];
+    //self.products = [self.dm fetchAllProducts];
 }
 
 
@@ -75,7 +77,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.products count];
+    return [self.filteredProductList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

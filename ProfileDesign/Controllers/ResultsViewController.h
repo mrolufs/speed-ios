@@ -10,4 +10,6 @@
 
 @interface ResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) NSArray *filteredProductList;
+
 @end

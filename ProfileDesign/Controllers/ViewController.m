@@ -16,7 +16,7 @@
 #import "Product.h"
 
 const static double STEM_ANGLE_ADDITIVE = 17;
-const static double STEM_LENGTH_ADDITIVE = 18.72;
+//const static double STEM_LENGTH_ADDITIVE = 18.72;
 const static double SPACERS_ADDITIVE = 20;
 
 
@@ -57,7 +57,8 @@ const static double SPACERS_ADDITIVE = 20;
 @property (nonatomic, strong) NSArray *spacersChoices;
 @property (nonatomic, strong) NSArray *headsetCapChoices;
 
-@property (nonatomic, strong) NSArray *resultSet;
+@property (nonatomic, strong) NSArray *familyResultSet;
+@property (nonatomic, strong) NSArray *productResultSet;
 
 @property (nonatomic, strong) PDDataManager *dm;
 
@@ -351,7 +352,6 @@ const static double SPACERS_ADDITIVE = 20;
     NSString *spacersValue = self.spacers.text;
     NSString *hsCap = self.headsetCap.text;
     
-    
     NSInteger dstack = [fitStack intValue] - [bikeStack intValue];
     NSInteger dreach = 0;
     
@@ -377,8 +377,22 @@ const static double SPACERS_ADDITIVE = 20;
     NSInteger stackResult = round(aerobar_stack);
     NSInteger reachResult = round(aerobar_reach);
     
+    
     EvaluationManager *em = [EvaluationManager sharedInstance];
-    [em evaluateStack:stackResult andReach:reachResult];
+    [em evaluateWithStack:stackResult withReach:reachResult withCompletion:^(NSArray *familyObjects, NSArray *productObjects)
+    {
+        self.familyResultSet = familyObjects;
+        self.productResultSet = productObjects;
+        
+        if (self.familyResultSet.count > 2)
+        {
+            [self performSegueWithIdentifier:@"mainToFilter" sender:nil];
+        }
+        else
+        {
+            [self performSegueWithIdentifier:@"mainToResults" sender:nil];
+        }
+    }];
 }
 
 - (IBAction)resignAllFields:(id)sender
@@ -395,10 +409,13 @@ const static double SPACERS_ADDITIVE = 20;
     if ([[segue identifier] isEqualToString:@"mainToFilter"])
     {
         self.filterViewController = segue.destinationViewController;
+        self.filterViewController.familyList = self.familyResultSet;
+        self.filterViewController.productList = self.productResultSet;
     }
     else if ([[segue identifier] isEqualToString:@"mainToResults"])
     {
         self.resultsViewController = segue.destinationViewController;
+        self.resultsViewController.filteredProductList = self.productResultSet;
     }
 }
 

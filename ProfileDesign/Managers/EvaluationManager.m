@@ -53,9 +53,10 @@
     }
 }
 
-- (void)evaluateStack:(NSInteger)stack andReach:(NSInteger)reach
+- (void)evaluateWithStack:(NSInteger)stack withReach:(NSInteger)reach withCompletion:(void (^)(NSArray *familyObjects, NSArray *productObjects))completionBlock
 {
     self.tFamilyList = [[NSMutableArray alloc] init];
+    self.productList = [[NSMutableArray alloc] init];
     
     
     if((reach >= -75 && reach < -60) && (stack >= 50 && stack < 140)){
@@ -593,7 +594,10 @@
         NSLog(@"MORE THAN 2 T Family Items!!!");
     }
     
-    
+    if (completionBlock)
+    {
+        completionBlock(self.tFamilyList, self.productList);
+    };
     
 }
 

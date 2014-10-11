@@ -24,8 +24,6 @@
 @property (nonatomic, strong) NSArray *typeOfHandPositionChoices;
 @property (nonatomic, strong) NSArray *typeOfTriathlonCourseChoices;
 
-
-
 -(IBAction)goNextField:(id)sender;
 @end
 

@@ -15,6 +15,6 @@
 @property (nonatomic, strong) NSString *familyItem;
 
 + (instancetype)sharedInstance;
-- (void)evaluateStack:(NSInteger)stack andReach:(NSInteger)reach;
+- (void)evaluateWithStack:(NSInteger)stack withReach:(NSInteger)reach withCompletion:(void (^)(NSArray *familyObjects, NSArray *productObjects))completionBlock;
 
 @end
