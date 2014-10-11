@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Torqd Studios, LLC. All rights reserved.
 //
 
-#import "Aeria.h"
+#import "J2.h"
 
-@implementation Aeria
+@implementation J2
 
 
 
@@ -25,7 +25,7 @@
 
 - (NSString*)getDescription
 {
-    return @"Aeria";
+    return @"J2 Bracket";
 }
 
 @end

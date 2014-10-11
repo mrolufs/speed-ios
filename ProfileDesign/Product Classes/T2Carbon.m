@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Torqd Studios, LLC. All rights reserved.
 //
 
-#import "Aeria.h"
+#import "T2Carbon.h"
 
-@implementation Aeria
+@implementation T2Carbon
 
 
 
@@ -25,7 +25,7 @@
 
 - (NSString*)getDescription
 {
-    return @"Aeria";
+    return @"T2+ Carbon";
 }
 
 @end

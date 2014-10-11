@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Torqd Studios, LLC. All rights reserved.
 //
 
-#import "Aeria.h"
+#import "ZBS.h"
 
-@implementation Aeria
+@implementation ZBS
 
 
 
@@ -25,7 +25,7 @@
 
 - (NSString*)getDescription
 {
-    return @"Aeria";
+    return @"ZBS";
 }
 
 @end

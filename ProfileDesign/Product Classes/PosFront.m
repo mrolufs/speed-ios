@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Torqd Studios, LLC. All rights reserved.
 //
 
-#import "Aeria.h"
+#import "PosFront.h"
 
-@implementation Aeria
+@implementation PosFront
 
 
 
@@ -25,7 +25,7 @@
 
 - (NSString*)getDescription
 {
-    return @"Aeria";
+    return @"Front";
 }
 
 @end
