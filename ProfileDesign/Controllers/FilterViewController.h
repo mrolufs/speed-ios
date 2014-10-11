@@ -10,4 +10,7 @@
 
 @interface FilterViewController : UIViewController
 
+@property (nonatomic, strong) NSArray *familyList;
+@property (nonatomic, strong) NSArray *productList;
+
 @end
