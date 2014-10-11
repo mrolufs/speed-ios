@@ -24,6 +24,8 @@
 @property (nonatomic, strong) NSArray *typeOfHandPositionChoices;
 @property (nonatomic, strong) NSArray *typeOfTriathlonCourseChoices;
 
+@property (nonatomic, strong) NSMutableArray *filteredTs;
+@property (nonatomic, strong) NSMutableArray *filteredOutTs;
 
 
 -(IBAction)goNextField:(id)sender;
@@ -243,6 +245,76 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+}
+
+- (void) tFamilyFilter {
+    
+    NSString *typeOfRidingText = self.typeOfRiding.text;
+    NSString *triathlonCourseText = self.triathlonCourse.text;
+    NSString *multiPositionalText = self.positionChangeFrequency.text;
+    
+    self.filteredTs = [[NSMutableArray alloc] init];
+    self.filteredOutTs = [[NSMutableArray alloc] init];
+
+    
+ 
+    //if Type of Riding...
+    if([typeOfRidingText  isEqual: @"Time Trial"]){
+        if([multiPositionalText  isEqual: @"Yes"]){
+            //Log.i("TFAMILY", "TimeTrial, MultiPosition = Yes, ---> T2");
+            [self.filteredOutTs addObject:@"T1"];
+            [self.filteredOutTs addObject:@"T3"];
+            [self.filteredOutTs addObject:@"T4"];
+            
+        }else{
+            //Log.i("TFAMILY", "TimeTrial, MultiPosition = No, ---> T4");
+            //filteredTs.add("T4");
+            [self.filteredTs addObject:@"T4"];
+            
+            [self.filteredOutTs addObject:@"T1"];
+            [self.filteredOutTs addObject:@"T2"];
+            [self.filteredOutTs addObject:@"T3"];
+            
+        }
+    }else if([typeOfRidingText  isEqual: @"Triathlon"]){
+        if([triathlonCourseText isEqual: @"Short/Mid Course"]){
+            if([multiPositionalText  isEqual: @"Yes"]){
+                //Log.i("TFAMILY", "Triathlon, Short-Mid Course, MultiPosition = Yes, ---> T1/T2/T3");
+                [self.filteredTs addObject:@"T1"];
+                [self.filteredTs addObject:@"T2"];
+                [self.filteredTs addObject:@"T3"];
+                
+                [self.filteredOutTs addObject:@"T4"];
+
+            }else{
+                //Log.i("TFAMILY", "Triathlon, Short-Mid Course, MultiPosition = No, ---> T4");
+                [self.filteredTs addObject:@"T4"];
+                
+                [self.filteredOutTs addObject:@"T1"];
+                [self.filteredOutTs addObject:@"T2"];
+                [self.filteredOutTs addObject:@"T3"];
+                
+            }
+        }else if([triathlonCourseText isEqual: @"Long Course"]){
+            if([multiPositionalText  isEqual: @"Yes"]){
+                //Log.i("TFAMILY", "Triathlon, Mid-Long Course, MultiPosition = Yes, ---> T1/T3");
+                [self.filteredTs addObject:@"T1"];
+                [self.filteredTs addObject:@"T3"];
+                
+                [self.filteredOutTs addObject:@"T2"];
+                [self.filteredOutTs addObject:@"T4"];
+            }else{
+                //Log.i("TFAMILY", "Triathlon, Mid-Long Course, MultiPosition = No, ---> T4");
+
+                [self.filteredTs addObject:@"T4"];
+                
+                [self.filteredOutTs addObject:@"T1"];
+                [self.filteredOutTs addObject:@"T2"];
+                [self.filteredOutTs addObject:@"T3"];
+            }
+        }
+    }
+    
 }
 
 

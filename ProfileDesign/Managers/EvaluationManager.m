@@ -58,40 +58,40 @@
     self.tFamilyList = [[NSMutableArray alloc] init];
     
     
-    if((reach >= -75 && reach < -60) && (stack >= 50 && stack < 140)){
-        //V	AERiA T2/T4 F35 iN REAR PoSiTioN													"-75 to -65"					STACK	"50 to 135"
-        //Log.i("EVALUATE", "V	AERiA T2/T4 F35 iN REAR PoSiTioN");
-        //addT("T2");addT("T4");
-        
-       // products.add( new Aeria(new T2Carbon(new F35(new PosRear(new Product())))) );
-       // products.add( new Aeria(new T4Carbon(new F35(new PosRear(new Product())))) );
-        
-        [self addToList:@[@"T2",@"T4"]];
-
-        
-//        Product *product = [[Product alloc] init];
-//        Product *posRear = [[PosRear alloc] initWithProduct:product];
-//        Product *f35 = [[F35 alloc] initWithProduct:posRear];
-//        Product *t2Carbon = [[T2Carbon alloc] initWithProduct:f35];
-//        Product *aeria = [[Aeria alloc] initWithProduct:t2Carbon];
-        
-//        Product *product = [[Product alloc] init];
-//        Product *posRear = [[PosRear alloc] initWithProduct:product];
-//        Product *f35 = [[F35 alloc] initWithProduct:posRear];
-//        Product *t2Carbon = [[T2Carbon alloc] initWithProduct:f35];
-//        Product *aeria = [[Aeria alloc] initWithProduct:[[T2Carbon alloc] initWithProduct:[[F35 alloc] initWithProduct:[[PosRear alloc] initWithProduct:[[Product alloc] init]]]]];
-        
-        [self.productList addObject:
-         [[Aeria alloc] initWithProduct:
-          [[T2Carbon alloc] initWithProduct:
-           [[F35 alloc] initWithProduct:
-            [[PosRear alloc] initWithProduct:
-             [[Product alloc] init]]]]]];
-        
-        [self.productList addObject:[[Aeria alloc] initWithProduct:[[T4Carbon alloc] initWithProduct:[[F35 alloc] initWithProduct:[[PosRear alloc] initWithProduct:[[Product alloc] init]]]]]];
-        
-        
-    }
+//    if((reach >= -75 && reach < -60) && (stack >= 50 && stack < 140)){
+//        //V	AERiA T2/T4 F35 iN REAR PoSiTioN													"-75 to -65"					STACK	"50 to 135"
+//        //Log.i("EVALUATE", "V	AERiA T2/T4 F35 iN REAR PoSiTioN");
+//        //addT("T2");addT("T4");
+//        
+//       // products.add( new Aeria(new T2Carbon(new F35(new PosRear(new Product())))) );
+//       // products.add( new Aeria(new T4Carbon(new F35(new PosRear(new Product())))) );
+//        
+//        [self addToList:@[@"T2",@"T4"]];
+//
+//        
+////        Product *product = [[Product alloc] init];
+////        Product *posRear = [[PosRear alloc] initWithProduct:product];
+////        Product *f35 = [[F35 alloc] initWithProduct:posRear];
+////        Product *t2Carbon = [[T2Carbon alloc] initWithProduct:f35];
+////        Product *aeria = [[Aeria alloc] initWithProduct:t2Carbon];
+//        
+////        Product *product = [[Product alloc] init];
+////        Product *posRear = [[PosRear alloc] initWithProduct:product];
+////        Product *f35 = [[F35 alloc] initWithProduct:posRear];
+////        Product *t2Carbon = [[T2Carbon alloc] initWithProduct:f35];
+////        Product *aeria = [[Aeria alloc] initWithProduct:[[T2Carbon alloc] initWithProduct:[[F35 alloc] initWithProduct:[[PosRear alloc] initWithProduct:[[Product alloc] init]]]]];
+//        
+//        [self.productList addObject:
+//         [[Aeria alloc] initWithProduct:
+//          [[T2Carbon alloc] initWithProduct:
+//           [[F35 alloc] initWithProduct:
+//            [[PosRear alloc] initWithProduct:
+//             [[Product alloc] init]]]]]];
+//        
+//        [self.productList addObject:[[Aeria alloc] initWithProduct:[[T4Carbon alloc] initWithProduct:[[F35 alloc] initWithProduct:[[PosRear alloc] initWithProduct:[[Product alloc] init]]]]]];
+//        
+//        
+//    }
     
     if((reach >= -55 && reach < -40) && (stack >= 50 && stack < 140)){
         //X	AERiA T2/T4 F35 iN MiDDLE PoSiTioN													"-55 to -45"					STACK	"50 to 135"
