@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0B8BAC19E8E59900DDECFA /* GenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0B8BAB19E8E59900DDECFA /* GenerateManager.m */; };
 		4E79CCD019E4492300D6A1C1 /* F19.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E79CCAC19E4492300D6A1C1 /* F19.m */; };
 		4E79CCD119E4492300D6A1C1 /* F25.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E79CCAD19E4492300D6A1C1 /* F25.m */; };
 		4E79CCD219E4492300D6A1C1 /* F35.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E79CCAE19E4492300D6A1C1 /* F35.m */; };
@@ -79,6 +80,8 @@
 
 /* Begin PBXFileReference section */
 		3A65026B2E51CB7E0E95EB85 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		4E0B8BAA19E8E59900DDECFA /* GenerateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateManager.h; sourceTree = "<group>"; };
+		4E0B8BAB19E8E59900DDECFA /* GenerateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateManager.m; sourceTree = "<group>"; };
 		4E79CCAC19E4492300D6A1C1 /* F19.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F19.m; sourceTree = "<group>"; };
 		4E79CCAD19E4492300D6A1C1 /* F25.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F25.m; sourceTree = "<group>"; };
 		4E79CCAE19E4492300D6A1C1 /* F35.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F35.m; sourceTree = "<group>"; };
@@ -276,6 +279,8 @@
 				DBA965A819C17D15000A69BD /* PDDataManager.m */,
 				DBDEDACD19E3A73F0034838C /* EvaluationManager.h */,
 				DBDEDACE19E3A73F0034838C /* EvaluationManager.m */,
+				4E0B8BAA19E8E59900DDECFA /* GenerateManager.h */,
+				4E0B8BAB19E8E59900DDECFA /* GenerateManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -592,6 +597,7 @@
 				DB5DA8A91991E3AC00789FFE /* TPProduct.m in Sources */,
 				4E79CCD719E4492300D6A1C1 /* PosMiddle.m in Sources */,
 				4E79CCD519E4492300D6A1C1 /* J4.m in Sources */,
+				4E0B8BAC19E8E59900DDECFA /* GenerateManager.m in Sources */,
 				DBE1DAC1194F07DC004490A2 /* LLModalPickerView.m in Sources */,
 				4E79CCDA19E4492300D6A1C1 /* T1Plus.m in Sources */,
 				DBB9D80C19D7C81E007BF93A /* ResultsTableHeaderView.m in Sources */,
