@@ -427,8 +427,8 @@ const static double SPACERS_ADDITIVE = 20;
     if ([[segue identifier] isEqualToString:@"mainToFilter"])
     {
         self.filterViewController = segue.destinationViewController;
-        self.filterViewController.familyList = self.familyResultSet;
-        self.filterViewController.productList = self.productResultSet;
+        self.filterViewController.familyList = (NSMutableArray *)self.familyResultSet;
+        self.filterViewController.productList = (NSMutableArray *)self.productResultSet;
     }
     else if ([[segue identifier] isEqualToString:@"mainToResults"])
     {

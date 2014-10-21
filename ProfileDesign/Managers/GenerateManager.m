@@ -59,49 +59,49 @@
     if([product class] == [T1Plus class] && !_isT1Plus){
         //addLine();
         _isT1Plus = true;
-        t1Plus();
+        //t1Plus();
         [self optionalConfigurations];
     }
     else if([product class] == [T2Plus class] && !_isT2Plus){
         //addLine();
         _isT2Plus = true;
-        t2Plus();
+        //t2Plus();
         [self optionalConfigurations];
     }
     else if([product class] == [T3Plus class] && !_isT3Plus){
         //addLine();
         _isT3Plus = true;
-        t3Plus();
+        //t3Plus();
         [self optionalConfigurations];
     }
     else if([product class] == [T4Plus class] && !_isT4Plus){
         //addLine();
         _isT4Plus = true;
-        t4Plus();
+        //t4Plus();
         [self optionalConfigurations];
     }
     else if([product class] == [T1Carbon class] && !_isT1Carbon){
-        addLine();
+        //addLine();
         _isT1Carbon = true;
-        t1Carbon();
+        //t1Carbon();
         [self optionalConfigurations];
     }
     else if([product class] == [T2Carbon class] && !_isT2Carbon){
         //addLine();
         _isT2Carbon = true;
-        t2Carbon();
+        //t2Carbon();
         [self optionalConfigurations];
     }
     else if([product class] == [T3Carbon class] && !_isT3Carbon){
         //addLine();
         _isT3Carbon = true;
-        t3Carbon();
+        //t3Carbon();
         [self optionalConfigurations];
     }
     else if([product class] == [T4Carbon class] && !_isT4Carbon){
         //addLine();
         _isT4Carbon = true;
-        t4Carbon();
+        //t4Carbon();
         [self optionalConfigurations];
     }else if([product class] == [Aeria class] && !_isAeria){
         //addLine();
@@ -115,7 +115,7 @@
         _isT3Carbon = true;
         _isT4Carbon = true;
         
-        aeria();
+        //aeria();
         
         if(!_isT1Plus && !_isT3Plus){
             [self optionalConfigurations];
@@ -124,7 +124,7 @@
     }else if([product class] == [ZBS class] && !_isZBS){
         //addLine();
         _isZBS = true;
-        zbsSBend();
+        //zbsSBend();
         [self optionalConfigurations];
     }
     else{
@@ -141,31 +141,34 @@
                 }else{
                     
                     if([product class] != [Aeria class]){
-                        generateOptions(product);
+                        //generateOptions(product);
+                        NSLog(@"Generate Options");
                     }
                 }
                 
                 
             }else{
 				
-                generateOptions(product);	
+                //generateOptions(product);
+                NSLog(@"Generate Options");
             }
         }
         else if([product class] == [Product class]){
             
             
-            addLine();
+            //addLine();
+            NSLog(@"Add Line");
             
         }
-        
     }
     
+    /*
     if(product.product != NULL){
         
         recurseProduct(product.product);
 		
     }
-    
+    */
 }
 
 - (void) optionalConfigurations{

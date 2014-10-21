@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) Product *product;
 
-- (id)initWithProduct:(Product *)theProduct;
-- (NSString *)getDescription;
+- (id)initWithProduct:(Product *)product;
 
 @end

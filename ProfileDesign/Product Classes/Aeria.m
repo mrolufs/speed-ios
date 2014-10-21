@@ -20,14 +20,9 @@
     return self;
 }
 
-- (NSString *)description
+- (NSString*)description
 {
     return @"Aeria";
-}
-
-- (NSString *)getDescription
-{
-    return self.description;
 }
 
 @end

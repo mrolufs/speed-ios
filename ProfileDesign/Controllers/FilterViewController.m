@@ -27,9 +27,10 @@
 
 @property (nonatomic, strong) NSMutableArray *filteredTs;
 @property (nonatomic, strong) NSMutableArray *filteredOutTs;
-
+@property (nonatomic, strong) NSMutableArray *filteredProductList;
 
 -(IBAction)goNextField:(id)sender;
+
 @end
 
 @implementation FilterViewController
@@ -82,6 +83,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Button Actions
+
 -(IBAction)goBackAction:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -91,6 +94,8 @@
 {
     [self tFamilyFilter];
 }
+
+#pragma mark - UI Methods
 
 -(void)setupUI
 {
@@ -129,12 +134,9 @@
 
 -(void)setupPickerChoices
 {
-    
     _typeOfRidingChoices = @[@"Time Trial", @"Triathlon"];
     _typeOfHandPositionChoices = @[@"Yes", @"No"];
     _typeOfTriathlonCourseChoices = @[@"Short/Mid Course", @"Long Course"];
-
-    
 }
 
 -(IBAction)goNextField:(id)sender
@@ -320,10 +322,35 @@
     
     
     // Now filter the list
+    NSMutableIndexSet *indexesToDelete = [NSMutableIndexSet indexSet];
+    
+    
     for (int i = 0; i < self.productList.count; i++) {
-        NSLog(@"\n%@\n",self.productList);
+        NSString *productItem = (NSString *)[self.productList[i] description];
+        NSLog(@"\n %d. %@\n", i,productItem);
+        
+        for (NSString *item in self.filteredOutTs)
+        {
+            NSLog(@"\nItem = %@\n", item);
+            if ([productItem rangeOfString:item].location == NSNotFound)
+            {
+                
+                //[self.filteredProductList addObject:productItem];
+                NSLog(@"\n\nAdded one!\n\n");
+            }
+            else
+            {
+                [indexesToDelete addIndex:i];
+                break;
+            }
+        }
+        
     }
+    
+    [self.productList removeObjectsAtIndexes:indexesToDelete];
+    //NSLog(@"\n\nFiltered Product List\n-----\n%@\n", self.filteredProductList);
 }
+
 
 
 #pragma mark - Navigation
