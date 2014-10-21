@@ -105,6 +105,7 @@
         [self addToList:@[@"T2",@"T4"]];
         
         [self.productList addObject:[[Aeria alloc] initWithProduct:[[T2Carbon alloc] initWithProduct:[[F35 alloc] initWithProduct:[[PosMiddle alloc] initWithProduct:[[Product alloc] init]]]]]];
+        
         [self.productList addObject:[[Aeria alloc] initWithProduct:[[T4Carbon alloc] initWithProduct:[[F35 alloc] initWithProduct:[[PosMiddle alloc] initWithProduct:[[Product alloc] init]]]]]];
     }
     

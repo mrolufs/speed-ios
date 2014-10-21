@@ -11,9 +11,9 @@
 
 @interface Aeria : Product
 
-@property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) Product *product;
 
-- (id)initWithProduct:(Product *)product;
+- (id)initWithProduct:(Product *)theProduct;
+- (NSString *)getDescription;
 
 @end

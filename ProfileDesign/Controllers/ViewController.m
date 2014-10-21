@@ -100,6 +100,10 @@ const static double SPACERS_ADDITIVE = 20;
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:self.view.window];
+    
+    // Setup Array List Objects
+    self.familyResultSet = [[NSArray alloc] init];
+    self.productResultSet = [[NSArray alloc] init];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -117,6 +121,11 @@ const static double SPACERS_ADDITIVE = 20;
 - (BOOL)shouldAutorotate
 {
     return NO;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 -(void)setupUI
@@ -343,14 +352,23 @@ const static double SPACERS_ADDITIVE = 20;
 - (IBAction)submitButtonAction:(UIButton *)button
 {
     [self validateFormFields];
-    NSString *bikeStack = self.frameStack.text;
-    NSString *bikeReach = self.frameReach.text;
-    NSString *fitStack = self.armRestStack.text;
-    NSString *fitReach = self.armRestReach.text;
-    NSString *sAngle = self.stemAngle.text;
-    NSString *sLength = self.stemLength.text;
-    NSString *spacersValue = self.spacers.text;
-    NSString *hsCap = self.headsetCap.text;
+//    NSString *bikeStack = self.frameStack.text;
+//    NSString *bikeReach = self.frameReach.text;
+//    NSString *fitStack = self.armRestStack.text;
+//    NSString *fitReach = self.armRestReach.text;
+//    NSString *sAngle = self.stemAngle.text;
+//    NSString *sLength = self.stemLength.text;
+//    NSString *spacersValue = self.spacers.text;
+//    NSString *hsCap = self.headsetCap.text;
+
+    NSString *bikeStack = @"545";
+    NSString *bikeReach = @"380";
+    NSString *fitStack = @"690";
+    NSString *fitReach = @"395";
+    NSString *sAngle = @"17";
+    NSString *sLength = @"90";
+    NSString *spacersValue = @"10";
+    NSString *hsCap = @"5";
     
     NSInteger dstack = [fitStack intValue] - [bikeStack intValue];
     NSInteger dreach = 0;

@@ -10,4 +10,8 @@
 
 @interface Product : NSObject
 
+- (id)initWithProduct:(Product *)product;
+- (Product *)getProduct;
+- (NSString *)getDescription;
+
 @end

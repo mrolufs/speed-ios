@@ -11,7 +11,6 @@
 
 @interface PosRear : Product
 
-@property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) Product *product;
 
 - (id)initWithProduct:(Product *)product;

@@ -23,7 +23,7 @@
     return self;
 }
 
-- (NSString*)getDescription
+- (NSString*)description
 {
     return @"F19 Armrest";
 }

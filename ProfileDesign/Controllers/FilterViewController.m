@@ -8,6 +8,7 @@
 
 #import "FilterViewController.h"
 #import "LLModalPickerView.h"
+#import "Product.h"
 
 @interface FilterViewController () <UITextFieldDelegate, UIPickerViewDelegate>
 
@@ -70,6 +71,11 @@
 
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"\n\nFilter Screen\n-------\nFamily List: %@\nProduct List: %@\n\n", self.familyList, self.productList);
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -79,6 +85,11 @@
 -(IBAction)goBackAction:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)submitButtonAction:(id)sender
+{
+    [self tFamilyFilter];
 }
 
 -(void)setupUI
@@ -237,15 +248,7 @@
     activeField = nil;
 }
 
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
+#pragma mark - Filter Methods
 
 - (void) tFamilyFilter {
     
@@ -259,8 +262,8 @@
     
  
     //if Type of Riding...
-    if([typeOfRidingText  isEqual: @"Time Trial"]){
-        if([multiPositionalText  isEqual: @"Yes"]){
+    if([typeOfRidingText  isEqualToString: @"Time Trial"]){
+        if([multiPositionalText  isEqualToString: @"Yes"]){
             //Log.i("TFAMILY", "TimeTrial, MultiPosition = Yes, ---> T2");
             [self.filteredOutTs addObject:@"T1"];
             [self.filteredOutTs addObject:@"T3"];
@@ -276,9 +279,9 @@
             [self.filteredOutTs addObject:@"T3"];
             
         }
-    }else if([typeOfRidingText  isEqual: @"Triathlon"]){
-        if([triathlonCourseText isEqual: @"Short/Mid Course"]){
-            if([multiPositionalText  isEqual: @"Yes"]){
+    }else if([typeOfRidingText  isEqualToString: @"Triathlon"]){
+        if([triathlonCourseText isEqualToString: @"Short/Mid Course"]){
+            if([multiPositionalText  isEqualToString: @"Yes"]){
                 //Log.i("TFAMILY", "Triathlon, Short-Mid Course, MultiPosition = Yes, ---> T1/T2/T3");
                 [self.filteredTs addObject:@"T1"];
                 [self.filteredTs addObject:@"T2"];
@@ -295,8 +298,8 @@
                 [self.filteredOutTs addObject:@"T3"];
                 
             }
-        }else if([triathlonCourseText isEqual: @"Long Course"]){
-            if([multiPositionalText  isEqual: @"Yes"]){
+        }else if([triathlonCourseText isEqualToString: @"Long Course"]){
+            if([multiPositionalText  isEqualToString: @"Yes"]){
                 //Log.i("TFAMILY", "Triathlon, Mid-Long Course, MultiPosition = Yes, ---> T1/T3");
                 [self.filteredTs addObject:@"T1"];
                 [self.filteredTs addObject:@"T3"];
@@ -315,7 +318,21 @@
         }
     }
     
+    
+    // Now filter the list
+    for (int i = 0; i < self.productList.count; i++) {
+        NSLog(@"\n%@\n",self.productList);
+    }
 }
+
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+}
+
 
 
 @end

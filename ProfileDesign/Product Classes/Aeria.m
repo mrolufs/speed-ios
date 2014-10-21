@@ -10,22 +10,24 @@
 
 @implementation Aeria
 
-
-
-- (id)initWithProduct:(Product *)product
+- (id)initWithProduct:(Product *)theProduct
 {
-    
     self = [super init];
     if (self)
     {
-        self.product = product;
+        self.product = theProduct;
     }
     return self;
 }
 
-- (NSString*)getDescription
+- (NSString *)description
 {
     return @"Aeria";
+}
+
+- (NSString *)getDescription
+{
+    return self.description;
 }
 
 @end

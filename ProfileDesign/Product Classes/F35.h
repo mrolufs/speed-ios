@@ -11,8 +11,7 @@
 
 @interface F35 : Product
 
-@property (nonatomic, strong) NSString *description;
-@property (nonatomic, strong) Product *product;
+@property (nonatomic, assign) Product *product;
 
 - (id)initWithProduct:(Product *)product;
 
