@@ -8,6 +8,7 @@
 
 #import "TPProduct.h"
 
+
 @implementation TPProduct
 
 - (instancetype)initWithJSONObject:(NSDictionary *)json
@@ -21,15 +22,21 @@
         self.thumbnailurl = [json valueForKey:@"thumbnailurl"];
         self.weburl = [json valueForKey:@"weburl"];
     }
+    
     return self;
 }
 
--(BOOL)fieldExists:(NSString*)searchKey inKeySet:(NSArray*)keySet
+- (BOOL)fieldExists:(NSString *)searchKey inKeySet:(NSArray *)keySet
 {
-    for (NSString *key in keySet) {
+    for (NSString *key in keySet)
+    {
         if ([searchKey isEqualToString:key])
+        {
+            
             return YES;
+        }
     }
+    
     return NO;
 }
 

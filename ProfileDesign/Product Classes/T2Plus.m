@@ -8,9 +8,8 @@
 
 #import "T2Plus.h"
 
+
 @implementation T2Plus
-
-
 
 - (id)initWithProduct:(Product *)theProduct
 {
@@ -20,10 +19,11 @@
     {
         self.product = theProduct;
     }
+    
     return self;
 }
 
-- (NSString*)description
+- (NSString *)description
 {
     return @"T2+ Aluminum";
 }

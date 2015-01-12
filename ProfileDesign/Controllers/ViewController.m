@@ -19,8 +19,6 @@ const static double STEM_ANGLE_ADDITIVE = 17;
 //const static double STEM_LENGTH_ADDITIVE = 18.72;
 const static double SPACERS_ADDITIVE = 20;
 
-
-
 @interface ViewController () <UITextFieldDelegate, UIPickerViewDelegate>
 
 @property (nonatomic, strong) FilterViewController *filterViewController;
@@ -45,6 +43,9 @@ const static double SPACERS_ADDITIVE = 20;
 @property (nonatomic, weak) IBOutlet UITextField *spacers;
 @property (nonatomic, weak) IBOutlet UITextField *headsetCap;
 @property (nonatomic, weak) IBOutlet UIButton *backgroundButton;
+
+@property (nonatomic, assign) NSInteger stack;
+@property (nonatomic, assign) NSInteger reach;
 
 @property (nonatomic) BOOL moveFormField;
 
@@ -106,7 +107,7 @@ const static double SPACERS_ADDITIVE = 20;
     self.productResultSet = [[NSArray alloc] init];
 }
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     // REMOVE KEYBOARD NOTIFICATIONS
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -128,7 +129,7 @@ const static double SPACERS_ADDITIVE = 20;
     return YES;
 }
 
--(void)setupUI
+- (void)setupUI
 {
     // SET FIELD ACTIONS
     [_frameStack addTarget:self
@@ -186,16 +187,16 @@ const static double SPACERS_ADDITIVE = 20;
     self.backgroundButton.frame = frame;
 }
 
--(void)setupPickerChoices
+- (void)setupPickerChoices
 {
-    _bikeFrameStackChoices = @[@"Choice One",@"Choice Two",@"Choice Three"];
-    _bikeFrameReachChoices = @[@"Choice One",@"Choice Two",@"Choice Three"];
-    _armRestStackChoices = @[@"Choice One",@"Choice Two",@"Choice Three"];
-    _armRestReachChoices = @[@"Choice One",@"Choice Two",@"Choice Three"];
-    _stemAngleChoices = @[@"-25",@"-17",@"-12",@"-10",@"-7",@"-6",@"0",@"6",@"7",@"10",@"12",@"17",@"25"];
-    _stemLengthChoices = @[@"60",@"70",@"80",@"90",@"100",@"110",@"120",@"130"];
-    _spacersChoices = @[@"0.0",@"2.5",@"5.0",@"7.5",@"10.0",@"12.5",@"15.0",@"17.5",@"20.0",@"22.5",@"25.0",@"27.5",@"30.0",@"32.5",@"35.0",@"37.5",@"40.0"];
-    _headsetCapChoices = @[@"0",@"5",@"10",@"15",@"20"];
+    _bikeFrameStackChoices = @[@"Choice One", @"Choice Two", @"Choice Three"];
+    _bikeFrameReachChoices = @[@"Choice One", @"Choice Two", @"Choice Three"];
+    _armRestStackChoices = @[@"Choice One", @"Choice Two", @"Choice Three"];
+    _armRestReachChoices = @[@"Choice One", @"Choice Two", @"Choice Three"];
+    _stemAngleChoices = @[@"-25", @"-17", @"-12", @"-10", @"-7", @"-6", @"0", @"6", @"7", @"10", @"12", @"17", @"25"];
+    _stemLengthChoices = @[@"60", @"70", @"80", @"90", @"100", @"110", @"120", @"130"];
+    _spacersChoices = @[@"0.0", @"2.5", @"5.0", @"7.5", @"10.0", @"12.5", @"15.0", @"17.5", @"20.0", @"22.5", @"25.0", @"27.5", @"30.0", @"32.5", @"35.0", @"37.5", @"40.0"];
+    _headsetCapChoices = @[@"0", @"5", @"10", @"15", @"20"];
     
 
 }
@@ -206,28 +207,45 @@ const static double SPACERS_ADDITIVE = 20;
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)goNextField:(id)sender
+- (IBAction)goNextField:(id)sender
 {
     if (sender == _frameStack)
+    {
         [_frameReach becomeFirstResponder];
+    }
     else if (sender == _frameReach)
+    {
         [_armRestStack becomeFirstResponder];
+    }
     else if (sender == _armRestStack)
+    {
         [_armRestReach becomeFirstResponder];
+    }
     else if (sender == _armRestReach)
+    {
         [_stemAngle becomeFirstResponder];
+    }
     else if (sender == _stemAngle)
+    {
         [_stemLength becomeFirstResponder];
+    }
     else if (sender == _stemLength)
+    {
         [_spacers becomeFirstResponder];
+    }
     else if (sender == _spacers)
+    {
         [_headsetCap becomeFirstResponder];
+    }
     else if (sender == _headsetCap)
+    {
         [_headsetCap resignFirstResponder];
+    }
     else
+    {
         [_frameStack becomeFirstResponder];
+    }
 }
-
 
 #pragma mark - Keyboard Methods
 
@@ -240,13 +258,15 @@ const static double SPACERS_ADDITIVE = 20;
 
 - (void)keyboardWillShow:(NSNotification *)n
 {
-    NSDictionary* info = [n userInfo];
+    NSDictionary *info = [n userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     CGRect bkgndRect = activeField.superview.frame;
     bkgndRect.size.height += kbSize.height;
     [activeField.superview setFrame:bkgndRect];
     if (_moveFormField)
+    {
         NSLog(@"stem angle");
+    }
     //[self.scrollView setContentOffset:CGPointMake(0.0, activeField.frame.origin.y-kbSize.height) animated:YES];
     
 //    NSDictionary* info = [n userInfo];
@@ -265,7 +285,6 @@ const static double SPACERS_ADDITIVE = 20;
 //    }
 }
 
-
 #pragma mark - UITextField Delegate Methods
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -278,49 +297,70 @@ const static double SPACERS_ADDITIVE = 20;
         [pickerView presentInView:self.view withBlock:^(BOOL madeChoice) {
             [_stemAngle setText:pickerView.selectedValue];
         }];
+        
         return NO;
         
-    } else if (textField == _stemLength) {
+    }
+    else if (textField == _stemLength)
+    {
         
         LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_stemLengthChoices];
         [pickerView setSelectedValue:_stemLength.text];
         [pickerView presentInView:self.view withBlock:^(BOOL madeChoice) {
             [_stemLength setText:pickerView.selectedValue];
         }];
+        
         return NO;
         
-    } else if (textField == _spacers) {
+    }
+    else if (textField == _spacers)
+    {
         
         LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_spacersChoices];
         [pickerView setSelectedValue:_spacers.text];
         [pickerView presentInView:self.view withBlock:^(BOOL madeChoice) {
             [_spacers setText:pickerView.selectedValue];
         }];
+        
         return NO;
         
-    } else if (textField == _headsetCap) {
-        
+    }
+    else if (textField == _headsetCap)
+    {
         LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_headsetCapChoices];
         [pickerView setSelectedValue:_headsetCap.text];
         [pickerView presentInView:self.view withBlock:^(BOOL madeChoice) {
             [_headsetCap setText:pickerView.selectedValue];
         }];
+        
         return NO;
         
-    } else
+    }
+    else
+    {
+        
         return YES;
+    }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == _stemAngle)
+    {
         _moveFormField = YES;
+    }
     else if(textField == _stemLength)
+    {
         _moveFormField = YES;
+    }
     else if(textField == _spacers)
+    {
         _moveFormField = YES;
+    }
     else if(textField == _headsetCap)
+    {
         _moveFormField = YES;
+    }
     
     activeField = textField;
 }
@@ -328,17 +368,24 @@ const static double SPACERS_ADDITIVE = 20;
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField == _stemAngle)
+    {
         _moveFormField = NO;
+    }
     else if(textField == _stemLength)
+    {
         _moveFormField = NO;
+    }
     else if(textField == _spacers)
+    {
         _moveFormField = NO;
+    }
     else if(textField == _headsetCap)
+    {
         _moveFormField = NO;
+    }
     
     activeField = nil;
 }
-
 
 #pragma mark - Field Check
 
@@ -352,6 +399,7 @@ const static double SPACERS_ADDITIVE = 20;
 - (IBAction)submitButtonAction:(UIButton *)button
 {
     [self validateFormFields];
+    // COMMENTED OUT DURING DEVELOPMENT
 //    NSString *bikeStack = self.frameStack.text;
 //    NSString *bikeReach = self.frameReach.text;
 //    NSString *fitStack = self.armRestStack.text;
@@ -361,6 +409,7 @@ const static double SPACERS_ADDITIVE = 20;
 //    NSString *spacersValue = self.spacers.text;
 //    NSString *hsCap = self.headsetCap.text;
 
+    // REMOVE THESE HARDCODED VALUES BEFORE GOING LIVE
     NSString *bikeStack = @"545";
     NSString *bikeReach = @"380";
     NSString *fitStack = @"690";
@@ -394,13 +443,18 @@ const static double SPACERS_ADDITIVE = 20;
     
     NSInteger stackResult = round(aerobar_stack);
     NSInteger reachResult = round(aerobar_reach);
-    
-    
+
+    // EVALUATE USING THE GENERATED STACK & REACH VALUES
     EvaluationManager *em = [EvaluationManager sharedInstance];
-    [em evaluateWithStack:stackResult withReach:reachResult withCompletion:^(NSArray *familyObjects, NSArray *productObjects)
+    [em evaluateWithStack:stackResult
+                withReach:reachResult
+           withCompletion:^(NSArray *familyObjects, NSArray *productObjects)
     {
         self.familyResultSet = familyObjects;
         self.productResultSet = productObjects;
+        
+        self.stack = stackResult;
+        self.reach = reachResult;
         
         if (self.familyResultSet.count > 2)
         {
@@ -418,7 +472,6 @@ const static double SPACERS_ADDITIVE = 20;
     [self.view endEditing:YES];
 }
 
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -429,11 +482,15 @@ const static double SPACERS_ADDITIVE = 20;
         self.filterViewController = segue.destinationViewController;
         self.filterViewController.familyList = (NSMutableArray *)self.familyResultSet;
         self.filterViewController.productList = (NSMutableArray *)self.productResultSet;
+        self.filterViewController.stack = self.stack;
+        self.filterViewController.reach = self.reach;
     }
     else if ([[segue identifier] isEqualToString:@"mainToResults"])
     {
         self.resultsViewController = segue.destinationViewController;
         self.resultsViewController.filteredProductList = self.productResultSet;
+        self.resultsViewController.stack = self.stack;
+        self.resultsViewController.reach = self.reach;
     }
 }
 

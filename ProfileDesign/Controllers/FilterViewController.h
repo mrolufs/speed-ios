@@ -12,5 +12,7 @@
 
 @property (nonatomic, strong) NSMutableArray *familyList;
 @property (nonatomic, strong) NSMutableArray *productList;
+@property (nonatomic, assign) NSInteger stack;
+@property (nonatomic, assign) NSInteger reach;
 
 @end

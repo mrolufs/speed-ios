@@ -8,6 +8,7 @@
 
 #import "PosRear.h"
 
+
 @implementation PosRear
 
 - (id)initWithProduct:(Product *)theProduct
@@ -18,11 +19,13 @@
     {
         self.product = theProduct;
     }
+    
     return self;
 }
 
 - (NSString *)description
 {
+    
     return @"Rear";
 }
 

@@ -32,6 +32,8 @@
 		DB0FA65019C156A50010B538 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0FA64C19C156A50010B538 /* CoreData.framework */; };
 		DB0FA65119C156A50010B538 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0FA64D19C156A50010B538 /* MobileCoreServices.framework */; };
 		DB0FA65219C156A50010B538 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0FA64E19C156A50010B538 /* SystemConfiguration.framework */; };
+		DB41638C1A3568390049036E /* PDFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB41638B1A3568390049036E /* PDFilterView.xib */; };
+		DB41638F1A3569620049036E /* PDFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB41638E1A3569620049036E /* PDFilterView.m */; };
 		DB5DA8A51991E27F00789FFE /* tplus_products.json in Resources */ = {isa = PBXBuildFile; fileRef = DB5DA8A41991E27F00789FFE /* tplus_products.json */; };
 		DB5DA8A91991E3AC00789FFE /* TPProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA8A81991E3AC00789FFE /* TPProduct.m */; };
 		DB5DA8AE1991E53B00789FFE /* TPProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5DA8AC1991E53B00789FFE /* TPProductCell.m */; };
@@ -124,6 +126,9 @@
 		DB0FA64C19C156A50010B538 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DB0FA64D19C156A50010B538 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DB0FA64E19C156A50010B538 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DB41638B1A3568390049036E /* PDFilterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDFilterView.xib; sourceTree = "<group>"; };
+		DB41638D1A3569620049036E /* PDFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFilterView.h; sourceTree = "<group>"; };
+		DB41638E1A3569620049036E /* PDFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFilterView.m; sourceTree = "<group>"; };
 		DB5DA8A31991D8F200789FFE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DB5DA8A41991E27F00789FFE /* tplus_products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tplus_products.json; sourceTree = "<group>"; };
 		DB5DA8A71991E3AC00789FFE /* TPProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPProduct.h; sourceTree = "<group>"; };
@@ -324,18 +329,18 @@
 		DBC97AB1194106A200761779 /* ProfileDesign */ = {
 			isa = PBXGroup;
 			children = (
-				DBDEDAD019E3B31D0034838C /* Product Classes */,
-				DBA965A619C17CD0000A69BD /* Managers */,
-				DB5DA8AA1991E4E500789FFE /* Cells */,
-				DB5DA8A61991E32A00789FFE /* Models */,
-				DB5DA8A21991D86F00789FFE /* Common */,
-				DBE1DABE194F075C004490A2 /* Views */,
-				DB98231A194570A10064F7E0 /* Controllers */,
 				DBC97ABA194106A200761779 /* AppDelegate.h */,
 				DBC97ABB194106A200761779 /* AppDelegate.m */,
-				DBC97ABD194106A200761779 /* Main.storyboard */,
+				DB5DA8AA1991E4E500789FFE /* Cells */,
+				DB5DA8A21991D86F00789FFE /* Common */,
+				DB98231A194570A10064F7E0 /* Controllers */,
 				DBC97AC3194106A200761779 /* Images.xcassets */,
+				DBC97ABD194106A200761779 /* Main.storyboard */,
+				DBA965A619C17CD0000A69BD /* Managers */,
+				DB5DA8A61991E32A00789FFE /* Models */,
+				DBDEDAD019E3B31D0034838C /* Product Classes */,
 				DBC97AB2194106A200761779 /* Supporting Files */,
+				DBE1DABE194F075C004490A2 /* Views */,
 			);
 			path = ProfileDesign;
 			sourceTree = "<group>";
@@ -426,6 +431,9 @@
 				DBB9D80A19D7C81E007BF93A /* ResultsTableHeaderView.h */,
 				DBB9D80B19D7C81E007BF93A /* ResultsTableHeaderView.m */,
 				DBB9D80D19D7CC76007BF93A /* ResultsTableHeaderView.xib */,
+				DB41638B1A3568390049036E /* PDFilterView.xib */,
+				DB41638D1A3569620049036E /* PDFilterView.h */,
+				DB41638E1A3569620049036E /* PDFilterView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -442,6 +450,7 @@
 				DBC97AA5194106A200761779 /* Frameworks */,
 				DBC97AA6194106A200761779 /* Resources */,
 				2B7F27534856475A86CFB5AA /* Copy Pods Resources */,
+				OBJCLEANCUSTOMRUNSCRIPTT /* Objective-Clean Run Script */,
 			);
 			buildRules = (
 			);
@@ -519,6 +528,7 @@
 				DB5DA8AF1991E53B00789FFE /* TPProductCell.xib in Resources */,
 				DBC97ABF194106A200761779 /* Main.storyboard in Resources */,
 				DB5DA8A51991E27F00789FFE /* tplus_products.json in Resources */,
+				DB41638C1A3568390049036E /* PDFilterView.xib in Resources */,
 				DBE1DABD19486998004490A2 /* pd_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -564,6 +574,20 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		OBJCLEANCUSTOMRUNSCRIPTT /* Objective-Clean Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Objective-Clean Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [[ -z ${SKIP_OBJCLEAN} || ${SKIP_OBJCLEAN} != 1 ]]; then\nif [[ -d \"${LOCAL_APPS_DIR}/Objective-Clean.app\" ]]; then \n\"${LOCAL_APPS_DIR}\"/Objective-Clean.app/Contents/Resources/ObjClean.app/Contents/MacOS/ObjClean \"${SRCROOT}\" \nelse\necho \"warning: You have to install and set up Objective-Clean to use its features!\" \nfi\nfi";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -602,6 +626,7 @@
 				4E79CCDA19E4492300D6A1C1 /* T1Plus.m in Sources */,
 				DBB9D80C19D7C81E007BF93A /* ResultsTableHeaderView.m in Sources */,
 				DB98231D194570FA0064F7E0 /* FilterViewController.m in Sources */,
+				DB41638F1A3569620049036E /* PDFilterView.m in Sources */,
 				4E79CCDB19E4492300D6A1C1 /* T2Carbon.m in Sources */,
 				4E79CCDE19E4492300D6A1C1 /* T3Plus.m in Sources */,
 				DB5DA8AE1991E53B00789FFE /* TPProductCell.m in Sources */,

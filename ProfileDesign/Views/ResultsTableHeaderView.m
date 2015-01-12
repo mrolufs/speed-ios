@@ -8,6 +8,7 @@
 
 #import "ResultsTableHeaderView.h"
 
+
 @implementation ResultsTableHeaderView
 
 + (instancetype)newViewWithFrame:(CGRect)frame

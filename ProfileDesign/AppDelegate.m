@@ -8,17 +8,19 @@
 
 #import "AppDelegate.h"
 
+
 @implementation AppDelegate
+
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize hostStatus, internetStatus, wifiStatus;
 
-+ (AppDelegate*) sharedAppDelegate
++ (AppDelegate *) sharedAppDelegate
 {
-    return (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -55,14 +57,7 @@
     [self saveContext];
 }
 
-
-
 #pragma mark - Core Data stack
-
-/**
- Returns the managed object context for the application.
- If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
- */
 
 - (NSManagedObjectContext *)managedObjectContext
 {
@@ -79,6 +74,7 @@
         
         [_managedObjectContext setMergePolicy:[[NSMergePolicy alloc] initWithMergeType:NSMergeByPropertyObjectTrumpMergePolicyType]];
     }
+    
     return _managedObjectContext;
 }
 
@@ -94,8 +90,8 @@
     }
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"ProfileDesign" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
     
+    return _managedObjectModel;
 }
 
 /**
@@ -152,7 +148,6 @@
     }
 }
 
-
 #pragma mark - Application's Documents directory
 
 // Returns the URL to the application's Documents directory.
@@ -161,27 +156,28 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-
 #pragma mark - Alert Message Method
 
 - (void)alertWithMessage:(NSString *)msg withTitle:(NSString *)title
 {
 	
 	if ([title length] == 0)
-    title = @"Error";
+    {
+        title = @"Error";
+    }
 	
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
 													message:msg
 												   delegate:nil
 										  cancelButtonTitle:@"OK"
-										  otherButtonTitles: nil];
+										  otherButtonTitles:nil];
 	[alert show];
 }
 
-
 #pragma mark - Reachability Methods
 
--(BOOL)internetCheck {
+- (BOOL)internetCheck
+{
 	
 	BOOL _isInternetConnectivity = YES;
 	
@@ -192,7 +188,8 @@
 	wifiStatus = [wifiReach currentReachabilityStatus];
 	internetStatus = [internetReach currentReachabilityStatus];
 	
-	if (hostStatus == NotReachable && internetStatus == NotReachable && wifiStatus == NotReachable) {
+	if (hostStatus == NotReachable && internetStatus == NotReachable && wifiStatus == NotReachable)
+    {
 		
 		// alert the user that there is no internet connectivity
 		NSString *errorString = @"There is Currently NO Internet Connectivity.\nYou will be unable to use Stylize effectively\nuntil connectivity has been restored.";
@@ -210,7 +207,8 @@
 	wifiStatus = [wifiReach currentReachabilityStatus];
 	internetStatus = [internetReach currentReachabilityStatus];
 	
-	if (hostStatus == NotReachable && internetStatus == NotReachable && wifiStatus == NotReachable) {
+	if (hostStatus == NotReachable && internetStatus == NotReachable && wifiStatus == NotReachable)
+    {
 		
 		// alert the user that there is no internet connectivity
 		NSString *errorString = @"There is Currently NO Internet Connectivity.\nYou will be unable to use Stylize effectively\nuntil connectivity has been restored.";
@@ -218,23 +216,29 @@
 														message:errorString
 													   delegate:nil
 											  cancelButtonTitle:@"OK"
-											  otherButtonTitles: nil];
+											  otherButtonTitles:nil];
 		[alert show];
 	}
 }
 
 // Called by Reachability whenever status changes.
-- (void)reachabilityChanged:(NSNotification* )note
+- (void)reachabilityChanged:(NSNotification *)note
 {
-	Reachability* curReach = [note object];
-	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+	Reachability *curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
 	
-	if(curReach == hostReach)
-    hostStatus = [curReach currentReachabilityStatus];
+	if (curReach == hostReach)
+    {
+        hostStatus = [curReach currentReachabilityStatus];
+    }
 	else if (curReach == wifiReach)
-    wifiStatus = [curReach currentReachabilityStatus];
+    {
+        wifiStatus = [curReach currentReachabilityStatus];
+    }
 	else if (curReach == internetReach)
-    internetStatus = [curReach currentReachabilityStatus];
+    {
+        internetStatus = [curReach currentReachabilityStatus];
+    }
 	
 	[self updateReachabilityStatus];
 }

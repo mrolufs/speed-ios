@@ -12,7 +12,13 @@
 @interface PDDataManager : NSObject
 
 + (instancetype)sharedInstance;
-- (NSArray*)fetchAllProducts;
+
+- (NSArray *)fetchProductsUsingList:(NSArray *)productlist;
+
+- (NSArray *)fetchProduct:(NSString *)product;
+
+- (NSArray *)fetchAllProducts;
+
 - (void)loadDataAsInitial:(BOOL)initial withCompletion:(completionBlock)completion;
 
 @end

@@ -7,19 +7,26 @@
 //
 
 #import "FilterViewController.h"
+#import "ResultsViewController.h"
 #import "LLModalPickerView.h"
 #import "Product.h"
 
 @interface FilterViewController () <UITextFieldDelegate, UIPickerViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) UITextField *activeField;
-@property (strong, nonatomic) IBOutlet UITextField *typeOfRiding;
-@property (strong, nonatomic) IBOutlet UITextField *triathlonCourse;
-@property (strong, nonatomic) IBOutlet UITextField *positionChangeFrequency;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) UITextField *activeField;
+@property (nonatomic, weak) IBOutlet UITextField *typeOfRiding;
+@property (nonatomic, weak) IBOutlet UITextField *triathlonCourse;
+@property (nonatomic, weak) IBOutlet UITextField *positionChangeFrequency;
+@property (nonatomic, weak) IBOutlet UIButton *backgroundButton;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *triathlonViewConstraint;
+
+@property (nonatomic, weak) IBOutlet UIView *triathlonView;
+@property (nonatomic, weak) IBOutlet UIView *positionsView;
+@property (nonatomic, weak) IBOutlet UIView *typeOfRidingView;
 
 @property (nonatomic, assign) BOOL moveFormField;
-
+@property (nonatomic, assign) BOOL isTriathlonCourse;
 
 @property (nonatomic, strong) NSArray *typeOfRidingChoices;
 @property (nonatomic, strong) NSArray *typeOfHandPositionChoices;
@@ -29,9 +36,12 @@
 @property (nonatomic, strong) NSMutableArray *filteredOutTs;
 @property (nonatomic, strong) NSMutableArray *filteredProductList;
 
--(IBAction)goNextField:(id)sender;
+@property (nonatomic, strong) ResultsViewController *resultsViewController;
+
+- (IBAction)goNextField:(id)sender;
 
 @end
+
 
 @implementation FilterViewController
 
@@ -40,15 +50,16 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
+    
     return self;
 }
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
 	//[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navbar"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController setNavigationBarHidden:YES];
@@ -69,7 +80,11 @@
                                              selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:self.view.window];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.isTriathlonCourse = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -85,7 +100,7 @@
 
 #pragma mark - Button Actions
 
--(IBAction)goBackAction:(id)sender
+- (IBAction)goBackAction:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -95,17 +110,24 @@
     [self tFamilyFilter];
 }
 
+- (IBAction)backgroundButtonAction:(id)sender
+{
+    [self.view endEditing:YES];
+}
+
 #pragma mark - UI Methods
 
--(void)setupUI
+- (void)setupUI
 {
     // SET FIELD ACTIONS
     [_typeOfRiding addTarget:self
                     action:@selector(goNextField:)
           forControlEvents:UIControlEventEditingDidEndOnExit];
+    
     [_triathlonCourse addTarget:self
                  action:@selector(goNextField:)
        forControlEvents:UIControlEventEditingDidEndOnExit];
+    
     [_positionChangeFrequency addTarget:self
                     action:@selector(goNextField:)
           forControlEvents:UIControlEventEditingDidEndOnExit];
@@ -119,11 +141,9 @@
     [_typeOfRiding setDelegate:self];
     [_triathlonCourse setDelegate:self];
     [_positionChangeFrequency setDelegate:self];
-    
-    
-    // MAKE THE FRAME STACK FIELD FIRST RESPONDER
-    //[_frameStack becomeFirstResponder];
-    
+
+    // HIDE TRIATHALON VIEW
+    self.triathlonView.frame = CGRectMake(20.0f, 101.0f, 280.0f, 0.0f);
     
     // SET SCROLLVIEW SIZE
     CGSize contentScrollSize = CGSizeMake(320.0f, 1024.0f);
@@ -132,26 +152,34 @@
     [_scrollView setContentOffset:contentOffsetSize];
 }
 
--(void)setupPickerChoices
+- (void)setupPickerChoices
 {
     _typeOfRidingChoices = @[@"Time Trial", @"Triathlon"];
     _typeOfHandPositionChoices = @[@"Yes", @"No"];
     _typeOfTriathlonCourseChoices = @[@"Short/Mid Course", @"Long Course"];
 }
 
--(IBAction)goNextField:(id)sender
+- (IBAction)goNextField:(id)sender
 {
     if (sender == _typeOfRiding)
+    {
         [_triathlonCourse becomeFirstResponder];
+    }
     else if (sender == _triathlonCourse)
+    {
         [_positionChangeFrequency becomeFirstResponder];
+    }
     else if (sender == _positionChangeFrequency)
+    {
         [_positionChangeFrequency becomeFirstResponder];
+    }
     else
+    {
         [_typeOfRiding becomeFirstResponder];
+    }
 }
 
--(IBAction)resignAllFields:(id)sender
+- (IBAction)resignAllFields:(id)sender
 {
     [self.view endEditing:YES];
 }
@@ -165,13 +193,15 @@
 
 - (void)keyboardWillShow:(NSNotification *)n
 {
-    NSDictionary* info = [n userInfo];
+    NSDictionary *info = [n userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     CGRect bkgndRect = activeField.superview.frame;
     bkgndRect.size.height += kbSize.height;
     [activeField.superview setFrame:bkgndRect];
     if (_moveFormField)
+    {
         NSLog(@"stem angle");
+    }
     //[self.scrollView setContentOffset:CGPointMake(0.0, activeField.frame.origin.y-kbSize.height) animated:YES];
     
     //    NSDictionary* info = [n userInfo];
@@ -190,50 +220,128 @@
     //    }
 }
 
+#pragma mark - Animate Triathlon View
+
+- (void)animateTriathlonView
+{
+    NSTimeInterval animationDuration = 0.2f;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:animationDuration];
+
+    if (self.isTriathlonCourse)
+    {
+        NSLog(@"\n\n----------\nAnimate IN Triathlon View\n----------\n");
+        self.triathlonView.frame = CGRectMake(20.0f, 101.0f, 280.0f, 65.0f);;
+    }
+    else
+    {
+        NSLog(@"\n\n----------\nAnimate OUT Triathlon View\n----------\n");
+        self.triathlonView.frame = CGRectMake(20.0f, 101.0f, 280.0f, 0);
+    }
+    
+    [UIView commitAnimations];
+    
+//    if (self.isTriathlonCourse) {
+//        self.triathlonView.frame =  CGRectMake(20.0f, 101.0f, 280.0f, 0);
+//        [UIView animateWithDuration:0.25 animations:^{
+//            self.triathlonView.frame =  CGRectMake(20.0f, 101.0f, 280.0f, 65.0f);
+//        }];
+//        self.isTriathlonCourse = YES;
+//    }
+//    else
+//    {
+//        [UIView animateWithDuration:0.25 animations:^{
+//            self.triathlonView.frame =  CGRectMake(20.0f, 101.0f, 280.0f, 0);
+//        }];
+//        self.isTriathlonCourse = NO;
+//    }
+
+}
+
+- (IBAction)btnToggleClick:(id)sender
+{
+    if (!self.isTriathlonCourse)
+    {
+        self.triathlonView.frame =  CGRectMake(130, 20, 0, 0);
+        [UIView animateWithDuration:0.25 animations:^{
+            self.triathlonView.frame =  CGRectMake(130, 30, 100, 200);
+        }];
+        self.isTriathlonCourse = YES;
+    }
+    else
+    {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.triathlonView.frame =  CGRectMake(130, 30, 0, 0);
+        }];
+        self.isTriathlonCourse = NO;
+    }
+}
+
+#pragma mark - UITextFieldDelegate
+
 - (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
 {
     if (textField == _typeOfRiding)
     {
-        
         LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_typeOfRidingChoices];
         [pickerView setSelectedValue:_typeOfRiding.text];
         [pickerView presentInView:self.view withBlock:^(BOOL madeChoice) {
-            [_typeOfRiding setText:pickerView.selectedValue];
+            NSString *selectedText = pickerView.selectedValue;
+            if ([selectedText isEqualToString:@"Triathlon"])
+            {
+                self.isTriathlonCourse = YES;
+            }
+            else
+            {
+                self.isTriathlonCourse = NO;
+            }
+            
+            [self animateTriathlonView];
+            [_typeOfRiding setText:selectedText];
         }];
+        
         return NO;
-        
-    } else if (textField == _triathlonCourse) {
-        
+    }
+    else if (textField == _triathlonCourse)
+    {
         LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_typeOfTriathlonCourseChoices];
         [pickerView setSelectedValue:_triathlonCourse.text];
         [pickerView presentInView:self.view withBlock:^(BOOL madeChoice) {
             [_triathlonCourse setText:pickerView.selectedValue];
         }];
+        
         return NO;
-        
-    } else if (textField == _positionChangeFrequency) {
-        
+    }
+    else if (textField == _positionChangeFrequency)
+    {
         LLModalPickerView *pickerView = [[LLModalPickerView alloc] initWithValues:_typeOfHandPositionChoices];
         [pickerView setSelectedValue:_positionChangeFrequency.text];
         [pickerView presentInView:self.view withBlock:^(BOOL madeChoice) {
             [_positionChangeFrequency setText:pickerView.selectedValue];
         }];
-        return NO;
         
-    } else
+        return NO;
+    }
+    else
+    {
         return YES;
-    
-    
+    }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == _typeOfRiding)
+    {
         _moveFormField = YES;
+    }
     else if(textField == _triathlonCourse)
+    {
         _moveFormField = YES;
+    }
     else if(textField == _positionChangeFrequency)
+    {
         _moveFormField = YES;
+    }
 
     activeField = textField;
 }
@@ -241,76 +349,82 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField == _typeOfRiding)
+    {
         _moveFormField = NO;
+    }
     else if(textField == _triathlonCourse)
+    {
         _moveFormField = NO;
+    }
     else if(textField == _positionChangeFrequency)
+    {
         _moveFormField = NO;
+    }
     
     activeField = nil;
 }
 
 #pragma mark - Filter Methods
 
-- (void) tFamilyFilter {
-    
+- (void) tFamilyFilter
+{
     NSString *typeOfRidingText = self.typeOfRiding.text;
     NSString *triathlonCourseText = self.triathlonCourse.text;
     NSString *multiPositionalText = self.positionChangeFrequency.text;
     
     self.filteredTs = [[NSMutableArray alloc] init];
     self.filteredOutTs = [[NSMutableArray alloc] init];
-
-    
  
     //if Type of Riding...
-    if([typeOfRidingText  isEqualToString: @"Time Trial"]){
-        if([multiPositionalText  isEqualToString: @"Yes"]){
-            //Log.i("TFAMILY", "TimeTrial, MultiPosition = Yes, ---> T2");
+    if ([typeOfRidingText  isEqualToString: @"Time Trial"])
+    {
+        if ([multiPositionalText  isEqualToString: @"Yes"])
+        {
             [self.filteredOutTs addObject:@"T1"];
             [self.filteredOutTs addObject:@"T3"];
             [self.filteredOutTs addObject:@"T4"];
-            
-        }else{
-            //Log.i("TFAMILY", "TimeTrial, MultiPosition = No, ---> T4");
-            //filteredTs.add("T4");
+        }
+        else
+        {
             [self.filteredTs addObject:@"T4"];
-            
             [self.filteredOutTs addObject:@"T1"];
             [self.filteredOutTs addObject:@"T2"];
             [self.filteredOutTs addObject:@"T3"];
-            
         }
-    }else if([typeOfRidingText  isEqualToString: @"Triathlon"]){
-        if([triathlonCourseText isEqualToString: @"Short/Mid Course"]){
-            if([multiPositionalText  isEqualToString: @"Yes"]){
-                //Log.i("TFAMILY", "Triathlon, Short-Mid Course, MultiPosition = Yes, ---> T1/T2/T3");
+    }
+    else if ([typeOfRidingText  isEqualToString: @"Triathlon"])
+    {
+        if ([triathlonCourseText isEqualToString: @"Short/Mid Course"])
+        {
+            if ([multiPositionalText  isEqualToString: @"Yes"])
+            {
                 [self.filteredTs addObject:@"T1"];
                 [self.filteredTs addObject:@"T2"];
                 [self.filteredTs addObject:@"T3"];
                 
                 [self.filteredOutTs addObject:@"T4"];
-
-            }else{
-                //Log.i("TFAMILY", "Triathlon, Short-Mid Course, MultiPosition = No, ---> T4");
+            }
+            else
+            {
                 [self.filteredTs addObject:@"T4"];
                 
                 [self.filteredOutTs addObject:@"T1"];
                 [self.filteredOutTs addObject:@"T2"];
                 [self.filteredOutTs addObject:@"T3"];
-                
             }
-        }else if([triathlonCourseText isEqualToString: @"Long Course"]){
-            if([multiPositionalText  isEqualToString: @"Yes"]){
-                //Log.i("TFAMILY", "Triathlon, Mid-Long Course, MultiPosition = Yes, ---> T1/T3");
+        }
+        else if ([triathlonCourseText isEqualToString: @"Long Course"])
+        {
+            if ([multiPositionalText  isEqualToString: @"Yes"])
+            {
                 [self.filteredTs addObject:@"T1"];
                 [self.filteredTs addObject:@"T3"];
                 
                 [self.filteredOutTs addObject:@"T2"];
                 [self.filteredOutTs addObject:@"T4"];
-            }else{
-                //Log.i("TFAMILY", "Triathlon, Mid-Long Course, MultiPosition = No, ---> T4");
-
+            }
+            else
+            {
                 [self.filteredTs addObject:@"T4"];
                 
                 [self.filteredOutTs addObject:@"T1"];
@@ -320,23 +434,21 @@
         }
     }
     
-    
     // Now filter the list
     NSMutableIndexSet *indexesToDelete = [NSMutableIndexSet indexSet];
     
-    
-    for (int i = 0; i < self.productList.count; i++) {
+    for (int i = 0; i < self.productList.count; i++)
+    {
         NSString *productItem = (NSString *)[self.productList[i] description];
-        NSLog(@"\n %d. %@\n", i,productItem);
+        //NSLog(@"\n %d. %@\n", i,productItem);
         
         for (NSString *item in self.filteredOutTs)
         {
-            NSLog(@"\nItem = %@\n", item);
+            //NSLog(@"\nItem = %@\n", item);
             if ([productItem rangeOfString:item].location == NSNotFound)
             {
-                
                 //[self.filteredProductList addObject:productItem];
-                NSLog(@"\n\nAdded one!\n\n");
+                //NSLog(@"\n\nAdded one!\n\n");
             }
             else
             {
@@ -344,22 +456,25 @@
                 break;
             }
         }
-        
     }
     
     [self.productList removeObjectsAtIndexes:indexesToDelete];
     //NSLog(@"\n\nFiltered Product List\n-----\n%@\n", self.filteredProductList);
+    
+    [self performSegueWithIdentifier:@"filterToResults" sender:nil];
 }
-
-
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    if ([segue.identifier isEqualToString:@"filterToResults"])
+    {
+        self.resultsViewController = segue.destinationViewController;
+        self.resultsViewController.filteredProductList = self.productList;
+        self.resultsViewController.stack = self.stack;
+        self.resultsViewController.reach = self.reach;
+    }
 }
-
-
 
 @end

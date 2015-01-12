@@ -13,6 +13,8 @@
 #import "TPProductCell.h"
 #import "PDProducts.h"
 #import "PDDataManager.h"
+#import "GenerateManager.h"
+#import "Product.h"
 
 @interface ResultsViewController ()
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -21,6 +23,7 @@
 @property (nonatomic, strong) PDDataManager *dm;
 
 @end
+
 
 @implementation ResultsViewController
 
@@ -41,11 +44,23 @@
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     
     ResultsTableHeaderView *headerView = [ResultsTableHeaderView newViewWithFrame:CGRectMake(0, 0, 320.0f, 150.0f)];
+    headerView.stackLabel.text = [NSString stringWithFormat:@"%ld", (long)self.stack];
+    headerView.reachLabel.text = [NSString stringWithFormat:@"%ld", (long)self.reach];
     [self.tableView setTableHeaderView:headerView];
     
-    //self.products = [self.dm fetchAllProducts];
-}
+    NSLog(@"\n\nFiltered Product List: \n%@", self.filteredProductList);
+    
+//    [self.filteredProductList enumerateObjectsUsingBlock:^(Product *obj, NSUInteger idx, BOOL *stop)
+//    {
+//        NSLog(@"\nObject: %@", obj);
+//    }];
 
+    // GENERATE PRODUCT LIST
+    NSSet *mySet = [[GenerateManager sharedGenerateManager] generateProducts:self.filteredProductList];
+    self.products = [self.dm fetchProductsUsingList:[mySet allObjects]];
+    
+    NSLog(@"\n\nBase Product List: \n%@", self.products);
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -53,7 +68,7 @@
     [self.tableView reloadData];
 }
 
--(IBAction)goBackAction:(id)sender
+- (IBAction)goBackAction:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -61,9 +76,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - UITableViewDataSource
 
@@ -72,48 +85,50 @@
     return 400.0f;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.filteredProductList count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.products count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    static NSString *CellIdentifier = @"ProductCell";
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * CellIdentifier = @"ProductCell";
     TPProductCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     [self configureCell:cell forRowAtIndexPath:indexPath];
     
     return cell;
 }
 
-- (void)configureCell:(TPProductCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (void)configureCell:(TPProductCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     long row = indexPath.row;
     
-    PDProducts *product = (PDProducts*)[self.products objectAtIndex:row];
-    cell.item = product;
+    PDProducts *product = (PDProducts *)[self.products objectAtIndex:row];
+    cell.item = @{ @"product":product, @"options":self.filteredProductList };
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     long row = indexPath.row;
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
     
-    PDProducts *product = (PDProducts*)[self.products objectAtIndex:row];
+    PDProducts *product = (PDProducts *)[self.products objectAtIndex:row];
     NSString *urlString = [self cleanUpProductPath:product];
     NSURL *url = [NSURL URLWithString:urlString];
-    if (![[UIApplication sharedApplication] openURL:url]) {
-        NSLog(@"%@%@",@"Failed to open url: ",[url description]);
+    if (![[UIApplication sharedApplication] openURL:url])
+    {
+        NSLog(@"%@%@", @"Failed to open url: ", [url description]);
     }
 }
 
-
 #pragma mark - Data Cleanup Method
 
-- (NSString*)cleanUpProductPath:(PDProducts*)item
+- (NSString *)cleanUpProductPath:(PDProducts *)item
 {
     NSString *retStr = @"";
     NSString *path = item.productPath;
@@ -122,15 +137,15 @@
     {
         if ([path isEqualToString:@"CARBON_AEROBARS_PATH"])
         {
-            retStr = [NSString stringWithFormat:@"%@%@%@",PRODUCT_PATH,CARBON_AEROBARS_PATH,item.productFile];
+            retStr = [NSString stringWithFormat:@"%@%@%@", PRODUCT_PATH, CARBON_AEROBARS_PATH, item.productFile];
         }
         else if ([path isEqualToString:@"ALUMINUM_AEROBARS_PATH"])
         {
-            retStr = [NSString stringWithFormat:@"%@%@%@",PRODUCT_PATH,ALUMINUM_AEROBARS_PATH,item.productFile];
+            retStr = [NSString stringWithFormat:@"%@%@%@", PRODUCT_PATH, ALUMINUM_AEROBARS_PATH, item.productFile];
         }
     }
+    
     return retStr;
 }
-
 
 @end

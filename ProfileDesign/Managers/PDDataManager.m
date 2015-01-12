@@ -11,20 +11,80 @@
 #import "PDProducts.h"
 #import "Constants.h"
 
+
 @implementation PDDataManager
 
 + (instancetype)sharedInstance
 {
     static dispatch_once_t onceToken;
-    static PDDataManager *sharedInstance;
+    static PDDataManager * sharedInstance;
     dispatch_once(&onceToken, ^(void)
                   {
                       sharedInstance = [[PDDataManager alloc] init];
                   });
+    
     return sharedInstance;
 }
 
--(NSArray*)fetchAllProducts
+- (NSArray *)fetchProductsUsingList:(NSArray *)productlist
+{
+    AppDelegate *ad = [AppDelegate sharedAppDelegate];
+    NSManagedObjectContext *moc = [ad managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Products" inManagedObjectContext:moc];
+    [fetchRequest setEntity:entity];
+    
+    // SET SORT
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title"
+                                                                   ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+
+    // SET PREDICATE
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title IN $PRODUCTLIST"];
+    fetchRequest.predicate = [predicate predicateWithSubstitutionVariables:
+                                [NSDictionary dictionaryWithObject:productlist
+                                                            forKey:@"PRODUCTLIST"]];
+    
+    // RETURN THE RESULTS
+    NSError *error = nil;
+    NSArray *resultObjects = [moc executeFetchRequest:fetchRequest error:&error];
+    if (resultObjects == nil)
+    {
+        NSLog(@"Fetch error goes here");
+    }
+    
+    return resultObjects;
+}
+
+- (NSArray *)fetchProduct:(NSString *)product
+{
+    AppDelegate *ad = [AppDelegate sharedAppDelegate];
+    NSManagedObjectContext *moc = [ad managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Products" inManagedObjectContext:moc];
+    [fetchRequest setEntity:entity];
+    
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title"
+                                                                   ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title = %@", product];
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    NSArray *resultObjects = [moc executeFetchRequest:fetchRequest error:&error];
+    if (resultObjects == nil)
+    {
+        NSLog(@"Fetch error goes here");
+    }
+    
+    return [resultObjects firstObject];
+}
+
+- (NSArray *)fetchAllProducts
 {
     AppDelegate *ad = [AppDelegate sharedAppDelegate];
     NSManagedObjectContext *moc = [ad managedObjectContext];
@@ -40,7 +100,8 @@
     
     NSError *error = nil;
     NSArray *resultObjects = [moc executeFetchRequest:fetchRequest error:&error];
-    if (resultObjects == nil) {
+    if (resultObjects == nil)
+    {
         NSLog(@"Fetch error goes here");
     }
     
@@ -62,8 +123,8 @@
     NSString *filePath = [[NSBundle mainBundle] pathForResource:TPLUS_PRODUCTS_JSON ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-    for (id itm in json) {
-        
+    for (id itm in json)
+    {
         // STUFF JSON VALUES INTO VARIABLES
         NSString *title = [itm valueForKey:@"title"];
         NSString *details = [itm valueForKey:@"details"];
@@ -99,19 +160,20 @@
     }
 }
 
--(void)resetAllData
+- (void)resetAllData
 {
     AppDelegate *ad = [AppDelegate sharedAppDelegate];
     NSManagedObjectContext *moc = [ad managedObjectContext];
     
-    NSFetchRequest * allItems = [[NSFetchRequest alloc] init];
+    NSFetchRequest *allItems = [[NSFetchRequest alloc] init];
     [allItems setEntity:[NSEntityDescription entityForName:@"Products" inManagedObjectContext:moc]];
     [allItems setIncludesPropertyValues:NO];
     
-    NSError * error = nil;
-    NSArray * items = [moc executeFetchRequest:allItems error:&error];
+    NSError *error = nil;
+    NSArray *items = [moc executeFetchRequest:allItems error:&error];
     
-    for (NSManagedObject * item in items) {
+    for (NSManagedObject *item in items)
+    {
         [moc deleteObject:item];
     }
     

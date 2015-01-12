@@ -12,7 +12,8 @@
 
 #import "LLModalPickerView.h"
 
-@interface LLModalPickerView () {
+@interface LLModalPickerView ()
+{
     UIPickerView *_picker;
     UIToolbar *_toolbar;
     UIView *_panel;
@@ -23,15 +24,18 @@
 
 @end
 
+
 @implementation LLModalPickerView
 
 @synthesize selectedIndex = _selectedIndex;
 @synthesize values = _values;
 @synthesize callbackBlock = _callbackBlock;
 
-- (id)initWithValues:(NSArray *)values {
+- (id)initWithValues:(NSArray *)values
+{
     self = [super init];
-    if (self) {
+    if (self)
+    {
         self.values = values;
         self.userInteractionEnabled = YES;
     }
@@ -39,47 +43,59 @@
     return self;
 }
 
-- (void)setValues:(NSArray *)values {
+- (void)setValues:(NSArray *)values
+{
     _values = values;
     
-    if (values) {
-        if (_picker) {
+    if (values)
+    {
+        if (_picker)
+        {
             [_picker reloadAllComponents];
         }
     }
 }
 
-- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+- (void)setSelectedIndex:(NSUInteger)selectedIndex
+{
     _selectedIndex = selectedIndex;
-    if (_picker) {
+    if (_picker)
+    {
         [_picker selectRow:selectedIndex inComponent:0 animated:YES];
     }
 }
 
-- (void)setSelectedValue:(NSString *)selectedValue {
+- (void)setSelectedValue:(NSString *)selectedValue
+{
     NSInteger index = [self.values indexOfObject:selectedValue];
     [self setSelectedIndex:index];
 }
 
-- (NSString *)selectedValue {
+- (NSString *)selectedValue
+{
+    
     return [self.values objectAtIndex:self.selectedIndex];
 }
 
-- (void)onCancel:(id)sender {
+- (void)onCancel:(id)sender
+{
     self.callbackBlock(NO);
     [self dismissPicker];
 }
 
-- (void)onDone:(id)sender {
+- (void)onDone:(id)sender
+{
     self.callbackBlock(YES);
     [self dismissPicker];
 }
 
-- (void)onBackdropTap:(id)sender {
+- (void)onBackdropTap:(id)sender
+{
     [self onCancel:sender];
 }
 
-- (void)dismissPicker {
+- (void)dismissPicker
+{
     [UIView animateWithDuration:0.25 delay:0
                         options:2
                      animations:^{
@@ -87,7 +103,9 @@
                          newFrame.origin.y += _panel.frame.size.height;
                          _panel.frame = newFrame;
                          _backdropView.alpha = 0;
-                     } completion:^(BOOL finished) {
+                     }
+                     completion:^(BOOL finished)
+    {
                          [_panel removeFromSuperview];
                          _panel = nil;
                          
@@ -98,7 +116,8 @@
                      }];
 }
 
-- (UIPickerView *)picker {
+- (UIPickerView *)picker
+{
     UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, BSMODALPICKER_TOOLBAR_HEIGHT, self.bounds.size.width, BSMODALPICKER_PANEL_HEIGHT - BSMODALPICKER_TOOLBAR_HEIGHT)];
     picker.dataSource = self;
     picker.delegate = self;
@@ -108,8 +127,8 @@
     return picker;
 }
 
-
-- (UIToolbar *)toolbar {
+- (UIToolbar *)toolbar
+{
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, BSMODALPICKER_TOOLBAR_HEIGHT)];
     toolbar.barStyle = UIBarStyleBlackTranslucent;
     
@@ -128,17 +147,20 @@
     return toolbar;
 }
 
-- (UIView *)backdropView {
+- (UIView *)backdropView
+{
     UIView *backdropView = [[UIView alloc] initWithFrame:self.bounds];
     backdropView.backgroundColor = [UIColor colorWithWhite:0 alpha:BSMODALPICKER_BACKDROP_OPACITY];
     backdropView.alpha = 0;
     
     UIGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBackdropTap:)];
     [backdropView addGestureRecognizer:tapRecognizer];
+    
     return backdropView;
 }
 
-- (void)presentInView:(UIView *)view withBlock:(LLModalPickerViewCallback)callback {
+- (void)presentInView:(UIView *)view withBlock:(LLModalPickerViewCallback)callback
+{
     self.frame = view.bounds;
     self.callbackBlock = callback;
     
@@ -173,17 +195,20 @@
                      }];
 }
 
-- (void)presentInWindowWithBlock:(LLModalPickerViewCallback)callback {
+- (void)presentInWindowWithBlock:(LLModalPickerViewCallback)callback
+{
     id appDelegate = [[UIApplication sharedApplication] delegate];
-    if ([appDelegate respondsToSelector:@selector(window)]) {
+    if ([appDelegate respondsToSelector:@selector(window)])
+    {
         UIWindow *window = [appDelegate window];
         [self presentInView:window withBlock:callback];
-    } else {
+    }
+    else
+    {
         [NSException exceptionWithName:@"Can't find a window property on App Delegate.  Please use the presentInView:withBlock: method" reason:@"The app delegate does not contain a window method"
                               userInfo:nil];
     }
 }
-
 
 #pragma mark - Text Color
 
@@ -193,25 +218,30 @@
     NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     return attString;
-    
 }
-
 
 #pragma mark - Picker View
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    
     return self.values.count;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    
     return [self.values objectAtIndex:row];
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
     self.selectedIndex = row;
 }
 

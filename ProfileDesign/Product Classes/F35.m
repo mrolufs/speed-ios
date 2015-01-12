@@ -8,22 +8,21 @@
 
 #import "F35.h"
 
+
 @implementation F35
-
-
 
 - (id)initWithProduct:(Product *)theProduct
 {
-    
     self = [super init];
     if (self)
     {
         self.product = theProduct;
     }
+    
     return self;
 }
 
-- (NSString*)description
+- (NSString *)description
 {
     return @"F35 Armrest";
 }

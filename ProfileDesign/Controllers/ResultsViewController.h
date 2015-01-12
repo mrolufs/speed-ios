@@ -11,5 +11,7 @@
 @interface ResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *filteredProductList;
+@property (nonatomic, assign) NSInteger stack;
+@property (nonatomic, assign) NSInteger reach;
 
 @end

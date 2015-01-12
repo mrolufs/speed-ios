@@ -8,6 +8,7 @@
 
 #import "Aeria.h"
 
+
 @implementation Aeria
 
 - (id)initWithProduct:(Product *)theProduct
@@ -17,10 +18,11 @@
     {
         self.product = theProduct;
     }
+    
     return self;
 }
 
-- (NSString*)description
+- (NSString *)description
 {
     return @"Aeria";
 }

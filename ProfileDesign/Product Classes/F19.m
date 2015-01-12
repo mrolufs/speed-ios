@@ -8,23 +8,23 @@
 
 #import "F19.h"
 
+
 @implementation F19
-
-
 
 - (id)initWithProduct:(Product *)product
 {
-    
     self = [super init];
     if (self)
     {
         self.product = product;
     }
+    
     return self;
 }
 
-- (NSString*)description
+- (NSString *)description
 {
+    
     return @"F19 Armrest";
 }
 

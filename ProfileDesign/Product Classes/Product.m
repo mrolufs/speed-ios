@@ -9,8 +9,11 @@
 #import "Product.h"
 
 @interface Product ()
+
 @property (nonatomic, strong) Product *product;
+
 @end
+
 
 @implementation Product
 
@@ -21,6 +24,7 @@
     {
         
     }
+    
     return self;
 }
 
@@ -31,6 +35,7 @@
     {
         self.product = product;
     }
+    
     return self;
 }
 
@@ -38,11 +43,6 @@
 {
     return @"Product";
 }
-
-//- (NSString *)description
-//{
-//    return @"Product";
-//}
 
 - (Product *)getProduct
 {

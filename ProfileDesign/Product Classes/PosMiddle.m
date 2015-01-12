@@ -8,6 +8,7 @@
 
 #import "PosMiddle.h"
 
+
 @implementation PosMiddle
 
 - (id)initWithProduct:(Product *)theProduct
@@ -17,11 +18,13 @@
     {
         self.product = theProduct;
     }
+    
     return self;
 }
 
-- (NSString*)description
+- (NSString *)description
 {
+    
     return @"Middle";
 }
 

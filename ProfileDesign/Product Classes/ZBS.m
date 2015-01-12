@@ -8,9 +8,8 @@
 
 #import "ZBS.h"
 
+
 @implementation ZBS
-
-
 
 - (id)initWithProduct:(Product *)theProduct
 {
@@ -20,10 +19,11 @@
     {
         self.product = theProduct;
     }
+    
     return self;
 }
 
-- (NSString*)description
+- (NSString *)description
 {
     return @"ZBS";
 }

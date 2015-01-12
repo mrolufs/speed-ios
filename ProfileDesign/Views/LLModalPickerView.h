@@ -33,6 +33,4 @@ typedef void (^LLModalPickerViewCallback)(BOOL madeChoice);
  */
 - (void)presentInWindowWithBlock:(LLModalPickerViewCallback)callback;
 
-
-
 @end

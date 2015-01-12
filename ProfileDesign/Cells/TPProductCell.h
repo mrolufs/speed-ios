@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class PDProducts;
-
 @interface TPProductCell : UITableViewCell
-@property (nonatomic, strong) PDProducts *item;
+
+@property (nonatomic, strong) NSDictionary *item;
+
 @end
