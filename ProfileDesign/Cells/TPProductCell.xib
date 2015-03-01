@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -133,6 +133,17 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
+                    <textView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="configurations" translatesAutoresizingMaskIntoConstraints="NO" id="Slo-gv-gip">
+                        <rect key="frame" x="21" y="291" width="280" height="170"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="128" id="a4Y-uN-R8I"/>
+                        </constraints>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                     <imageView appearanceType="aqua" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="grid_vert.png" translatesAutoresizingMaskIntoConstraints="NO" id="UFr-2L-MSf">
                         <rect key="frame" x="-4" y="0.0" width="34" height="400"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -186,6 +197,7 @@
                 <outlet property="armrest" destination="lO4-rU-vC4" id="doX-tE-Mcc"/>
                 <outlet property="armrestMaterial" destination="Ds3-Fl-Omt" id="9rF-uL-pde"/>
                 <outlet property="colors" destination="sKC-ZZ-uyf" id="mSY-EF-Q7X"/>
+                <outlet property="configurations" destination="Slo-gv-gip" id="WW6-nB-ZMI"/>
                 <outlet property="details" destination="7qu-0p-aq0" id="AMf-Nb-mwA"/>
                 <outlet property="material" destination="nZB-u7-B0T" id="9dG-18-DtL"/>
                 <outlet property="thumb" destination="K2M-J8-ARG" id="rcq-a0-zoa"/>

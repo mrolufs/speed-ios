@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4E0B8BAC19E8E59900DDECFA /* GenerateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0B8BAB19E8E59900DDECFA /* GenerateManager.m */; };
+		4E6B06AD1A9D532900F7D7AA /* TempConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E6B06AC1A9D532900F7D7AA /* TempConfig.m */; };
 		4E79CCD019E4492300D6A1C1 /* F19.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E79CCAC19E4492300D6A1C1 /* F19.m */; };
 		4E79CCD119E4492300D6A1C1 /* F25.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E79CCAD19E4492300D6A1C1 /* F25.m */; };
 		4E79CCD219E4492300D6A1C1 /* F35.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E79CCAE19E4492300D6A1C1 /* F35.m */; };
@@ -84,6 +85,8 @@
 		3A65026B2E51CB7E0E95EB85 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4E0B8BAA19E8E59900DDECFA /* GenerateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateManager.h; sourceTree = "<group>"; };
 		4E0B8BAB19E8E59900DDECFA /* GenerateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateManager.m; sourceTree = "<group>"; };
+		4E6B06AB1A9D532900F7D7AA /* TempConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempConfig.h; sourceTree = "<group>"; };
+		4E6B06AC1A9D532900F7D7AA /* TempConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempConfig.m; sourceTree = "<group>"; };
 		4E79CCAC19E4492300D6A1C1 /* F19.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F19.m; sourceTree = "<group>"; };
 		4E79CCAD19E4492300D6A1C1 /* F25.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F25.m; sourceTree = "<group>"; };
 		4E79CCAE19E4492300D6A1C1 /* F35.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F35.m; sourceTree = "<group>"; };
@@ -237,6 +240,8 @@
 				DB5DA8A71991E3AC00789FFE /* TPProduct.h */,
 				DB5DA8A81991E3AC00789FFE /* TPProduct.m */,
 				DB0FA64819C155C60010B538 /* ProfileDesign.xcdatamodeld */,
+				4E6B06AB1A9D532900F7D7AA /* TempConfig.h */,
+				4E6B06AC1A9D532900F7D7AA /* TempConfig.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -598,6 +603,7 @@
 				4E79CCE119E4492300D6A1C1 /* ZBS.m in Sources */,
 				4E79CCD819E4492300D6A1C1 /* PosRear.m in Sources */,
 				4E79CCD219E4492300D6A1C1 /* F35.m in Sources */,
+				4E6B06AD1A9D532900F7D7AA /* TempConfig.m in Sources */,
 				4E79CCD019E4492300D6A1C1 /* F19.m in Sources */,
 				DBDEDAD619E3B3710034838C /* Aeria.m in Sources */,
 				DBC97AC2194106A200761779 /* ViewController.m in Sources */,

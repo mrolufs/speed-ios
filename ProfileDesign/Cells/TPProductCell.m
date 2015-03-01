@@ -42,6 +42,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *armrest;
 @property (nonatomic, weak) IBOutlet UILabel *armrestMaterial;
 @property (nonatomic, weak) IBOutlet UILabel *weight;
+@property (nonatomic, weak) IBOutlet UITextView *configurations;
 
 @end
 
@@ -81,6 +82,7 @@
             self.armrestMaterial.text = product.armrestMaterial;
             self.weight.text = product.weight;
             
+            
             NSString *imagePath = [NSString stringWithFormat:@"%@%@", IMAGES_PATH, product.imageFile];
             
             NSURL *imgUrl = [NSURL URLWithString:imagePath];
@@ -89,7 +91,10 @@
             [self.thumb setImage:img];
                         
             //SECOND, FORMAT PRODUCT CONFIGURATIONS / OPTIONS
-            //NSArray *options = [item valueForKey:@"options"];
+            NSArray *options = [item valueForKey:@"options"];
+            
+            self.configurations.text = @"fuck you";
+
             //[self formatProductOptions:options];
         }
     }
@@ -101,6 +106,8 @@
     
     [options enumerateObjectsUsingBlock:^(Product *obj, NSUInteger idx, BOOL *stop)
     {
+
+        
         if ([obj class] == [T1Plus class])
         {
             T1Plus *myObj = (T1Plus *)obj;
@@ -221,6 +228,8 @@
                 }
             }
         }
+            
+        
     }];
     
     // SAVE THE DATA OUT TO THE DETAILS FIELD

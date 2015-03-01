@@ -15,3 +15,21 @@
 @property (nonatomic, assign) NSInteger reach;
 
 @end
+
+
+@interface ConfigCell3Item : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UILabel* configCell_3Item_1;
+@property (weak, nonatomic) IBOutlet UILabel* configCell_3Item_2;
+@property (weak, nonatomic) IBOutlet UILabel* configCell_3Item_3;
+
+@end
+
+@interface ConfigCell4Item : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UILabel* configCell_4Item_1;
+@property (weak, nonatomic) IBOutlet UILabel* configCell_4Item_2;
+@property (weak, nonatomic) IBOutlet UILabel* configCell_4Item_3;
+@property (weak, nonatomic) IBOutlet UILabel* configCell_4Item_4;
+
+@end

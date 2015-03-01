@@ -35,7 +35,8 @@
 
 @property (nonatomic, strong) PDProducts *cdProduct;
 @property (nonatomic, strong) NSMutableArray *productArray;
-@property (nonatomic, strong) NSMutableDictionary *productOptions;
+//@property (nonatomic, strong) NSMutableDictionary *productOptions;
+@property (nonatomic, strong) NSMutableArray *productOptions;
 
 @end
 
@@ -58,15 +59,30 @@
 - (NSSet *)generateProducts:(NSArray *)productList
 {
     self.productArray = [[NSMutableArray alloc] init];
-    self.productOptions = [[NSMutableDictionary alloc] init];
+    self.productOptions = [[NSMutableArray alloc] init];
     
     [productList enumerateObjectsUsingBlock:^(Product *product, NSUInteger idx, BOOL *stop)
     {
         [self.productArray addObject:[self newRecurseProduct:product]];
+        //[self.productArray addObject:[self recurseProduct:product]];
     }];
     
     return [NSSet setWithArray:self.productArray];
 }
+
+//- (NSSet *)generateOptions:(NSArray *)productList
+//{
+//
+//    self.productOptions = [[NSMutableArray alloc] init];
+//    
+//    [productList enumerateObjectsUsingBlock:^(Product *product, NSUInteger idx, BOOL *stop)
+//     {
+//         [self.productOptions addObject:];
+//         //[self.productArray addObject:[self recurseProduct:product]];
+//     }];
+//    
+//    return [NSSet setWithArray:self.productOptions];
+//}
 
 - (NSString *)newRecurseProduct:(Product *)product
 {
@@ -79,6 +95,8 @@
     else if ([product class] == [T2Plus class] && !_isT2Plus)
     {
         _isT2Plus = YES;
+        [self generateOptions:product];
+
     }
     else if ([product class] == [T3Plus class] && !_isT3Plus)
     {
@@ -229,20 +247,20 @@
     }
 }
 
-- (NSArray *) generateOptions:(Product *)product
-{
-    NSLog(@"%@", product);
-    //NSArray *options;
-    
-    
-    
-//    TextView textView = new TextView(context);
-//    textView.setText("Alternate Configurations:");
-//    textView.setTextColor(Color.RED);
+//- (NSArray *) generateOptions:(Product *)product
+//{
+//    NSLog(@"%@", product);
+//    //NSArray *options;
 //    
-//    productContainer.addView(textView);
-    
-    return @[];
-}
+//    
+//    
+////    TextView textView = new TextView(context);
+////    textView.setText("Alternate Configurations:");
+////    textView.setTextColor(Color.RED);
+////    
+////    productContainer.addView(textView);
+//    
+//    return @[];
+//}
 
 @end
