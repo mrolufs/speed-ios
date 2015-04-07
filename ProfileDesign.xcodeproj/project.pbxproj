@@ -787,6 +787,7 @@
 		};
 		DBC97ADE194106A200761779 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4A3789036B8E7555F126687 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ProfileDesign.app/ProfileDesign";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -809,6 +810,7 @@
 		};
 		DBC97ADF194106A200761779 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4A3789036B8E7555F126687 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ProfileDesign.app/ProfileDesign";
 				FRAMEWORK_SEARCH_PATHS = (

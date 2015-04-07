@@ -54,7 +54,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor blackColor];
-    [self.tableView registerNib:[UINib nibWithNibName:@"TPProductCell" bundle:nil] forCellReuseIdentifier:@"ProductCell"];
+    //[self.tableView registerNib:[UINib nibWithNibName:@"TPProductCell" bundle:nil] forCellReuseIdentifier:@"ProductCell"];
     [self.tableView setRowHeight:110.0f];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];

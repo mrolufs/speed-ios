@@ -93,7 +93,7 @@
             //SECOND, FORMAT PRODUCT CONFIGURATIONS / OPTIONS
             NSArray *options = [item valueForKey:@"options"];
             
-            self.configurations.text = @"fuck you";
+            //self.configurations.text = @"fuck you";
 
             //[self formatProductOptions:options];
         }
